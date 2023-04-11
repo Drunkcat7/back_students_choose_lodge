@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.back_students_choose_lodge.dao.AccountDao">
+
+    <resultMap type="com.back_students_choose_lodge.entity.Account" id="AccountMap">
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="user" column="user" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--新增所有列==>注册-->
+    <insert id="insert" keyProperty="uid" useGeneratedKeys="true">
+        insert into account(user, password)
+        values (#{user}, #{password})
+    </insert>
+    <!--登录-->
+    <select id="login" resultMap="AccountMap">
+        select uid,
+               user,
+               password,
+               level
+        from account
+        where user = #{user}
+          and password = #{password}
+    </select>
+</mapper>
+
