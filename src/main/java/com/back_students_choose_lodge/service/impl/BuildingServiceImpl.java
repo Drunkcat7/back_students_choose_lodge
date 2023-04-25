@@ -1,5 +1,6 @@
 package com.back_students_choose_lodge.service.impl;
 
+import com.back_students_choose_lodge.dao.RoomDao;
 import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.dao.BuildingDao;
 import com.back_students_choose_lodge.entity.Room;
@@ -20,11 +21,13 @@ import java.util.List;
 public class BuildingServiceImpl implements BuildingService {
     @Resource
     private BuildingDao buildingDao;
+    @Resource
+    private RoomDao roomDao;
 
     /**
      * 新建宿舍楼
      * @param building
-     * @return 是否成功
+     * @return 新增房间数
      */
     /**
      * 楼id  buildingId
@@ -34,7 +37,7 @@ public class BuildingServiceImpl implements BuildingService {
      * 性别   sex
      */
     @Override
-    public boolean newBuilding(Building building) {
+    public int newBuilding(Building building) {
 //        1. 新增宿舍楼
         int status = this.buildingDao.insert(building);
 
@@ -67,9 +70,7 @@ public class BuildingServiceImpl implements BuildingService {
                 roomList.add(room);
             }
         }
-        System.out.println(roomList.size());
-
-        return status == 1 ? true : false;
+        return this.roomDao.insertRooms(roomList);
     }
 
 

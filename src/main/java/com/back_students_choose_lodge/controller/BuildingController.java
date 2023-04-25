@@ -33,9 +33,15 @@ public class BuildingController {
         return this.buildingService.queryById(id);
     }
 
+
+    /**
+     * 新建宿舍楼
+     * @param buildingName,buildingFloor,buildingRoomSum,sex
+     * @return 新增房间数
+     */
     @PostMapping("/newBuilding")
     @Role(roles = {"admin"})//管理员
-    public boolean newBuilding(String buildingName, int buildingFloor, int buildingRoomSum, String sex) {
+    public int newBuilding(String buildingName, int buildingFloor, int buildingRoomSum, String sex) {
         /**
          * 楼名   buildingName
          * 楼层   buildingFloor

@@ -9,6 +9,27 @@
         <result property="professional" column="professional" jdbcType="VARCHAR"/>
     </resultMap>
 
+
+    <!--新增所有列-->
+    <insert id="insertRooms" keyProperty="roomId" useGeneratedKeys="true">
+        insert into students_choose_lodge_database.room(building_id, room_name)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.buildingId}, #{entity.roomName})
+        </foreach>
+    </insert>
+
+<!--    分界线～～～～～～～～～～～～～～～～～～～～～·-->
+
+    <!--新增所有列-->
+    <insert id="insertBatch" keyProperty="roomId" useGeneratedKeys="true">
+        insert into students_choose_lodge_database.room(building_id, room_name, professional)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.buildingId}, #{entity.roomName}, #{entity.professional})
+        </foreach>
+    </insert>
+
     <!--查询单个-->
     <select id="queryById" resultMap="RoomMap">
         select room_id,
@@ -55,13 +76,7 @@
         values (#{buildingId}, #{roomName}, #{professional})
     </insert>
 
-    <insert id="insertBatch" keyProperty="roomId" useGeneratedKeys="true">
-        insert into students_choose_lodge_database.room(building_id, room_name, professional)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.buildingId}, #{entity.roomName}, #{entity.professional})
-        </foreach>
-    </insert>
+
 
     <insert id="insertOrUpdateBatch" keyProperty="roomId" useGeneratedKeys="true">
         insert into students_choose_lodge_database.room(building_id, room_name, professional)

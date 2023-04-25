@@ -14,6 +14,24 @@ import java.util.List;
 public interface RoomDao {
 
     /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<Room> 实例对象列表
+     * @return 影响行数
+     */
+    int insertRooms(@Param("entities") List<Room> entities);
+
+    /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+    /**
+     * 批量新增数据（MyBatis原生foreach方法）
+     *
+     * @param entities List<Room> 实例对象列表
+     * @return 影响行数
+     */
+    int insertBatch(@Param("entities") List<Room> entities);
+
+    /**
      * 通过ID查询单条数据
      *
      * @param roomId 主键
@@ -47,13 +65,7 @@ public interface RoomDao {
      */
     int insert(Room room);
 
-    /**
-     * 批量新增数据（MyBatis原生foreach方法）
-     *
-     * @param entities List<Room> 实例对象列表
-     * @return 影响行数
-     */
-    int insertBatch(@Param("entities") List<Room> entities);
+
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）

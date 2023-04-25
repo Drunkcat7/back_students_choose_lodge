@@ -14,9 +14,9 @@ public interface BuildingService {
     /**
      * 新建宿舍楼
      * @param building
-     * @return 是否成功
+     * @return 新增房间数
      */
-    boolean newBuilding(Building building);
+    int newBuilding(Building building);
 
     /** ---------------------- */
 
