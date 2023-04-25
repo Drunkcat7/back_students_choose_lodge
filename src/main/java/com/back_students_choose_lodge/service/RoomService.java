@@ -13,6 +13,16 @@ import java.util.List;
 public interface RoomService {
 
     /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param buildingName 宿舍楼名
+     * @return 对象列表
+     */
+    List<Room> queryAllRoomByBuildingName(String buildingName);
+
+    /** ～～～～～～～～～～～～～～～～～～～～～～～· */
+
+    /**
      * 通过ID查询单条数据
      *
      * @param roomId 主键

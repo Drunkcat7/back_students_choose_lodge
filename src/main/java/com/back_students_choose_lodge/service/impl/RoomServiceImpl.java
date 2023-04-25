@@ -1,5 +1,7 @@
 package com.back_students_choose_lodge.service.impl;
 
+import com.back_students_choose_lodge.dao.BuildingDao;
+import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.dao.RoomDao;
 import com.back_students_choose_lodge.service.RoomService;
@@ -18,6 +20,24 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService {
     @Resource
     private RoomDao roomDao;
+    @Resource
+    private BuildingDao buildingDao;
+
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param buildingName 宿舍楼名
+     * @return 对象列表
+     */
+    @Override
+    public List<Room> queryAllRoomByBuildingName(String buildingName) {
+        Building building = this.buildingDao.queryByBuildingName(buildingName);
+        Room room = new Room();
+        room.setBuildingId(building.getBuildingId());
+        return this.roomDao.queryAll(room);
+    }
+
+    /**～～～～～～～～～～～～～～～～～～～～～～·*/
 
     /**
      * 通过ID查询单条数据

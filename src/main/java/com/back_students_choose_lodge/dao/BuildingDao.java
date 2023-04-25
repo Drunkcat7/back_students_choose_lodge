@@ -36,6 +36,13 @@ public interface BuildingDao {
      */
     Building queryLastInfo();
 
+    /**
+     * 通过宿舍楼名查询
+     * @param buildingName
+     * @return 数据对象
+     */
+    Building queryByBuildingName(String buildingName);
+
     /** ------------------------------- */
 
     /**

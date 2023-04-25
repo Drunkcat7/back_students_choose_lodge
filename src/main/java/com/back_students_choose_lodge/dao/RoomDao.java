@@ -21,6 +21,14 @@ public interface RoomDao {
      */
     int insertRooms(@Param("entities") List<Room> entities);
 
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param room 实例对象
+     * @return 对象列表
+     */
+    List<Room> queryAll(Room room);
+
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**
@@ -49,13 +57,7 @@ public interface RoomDao {
     List<Room> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
-    /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param room 实例对象
-     * @return 对象列表
-     */
-    List<Room> queryAll(Room room);
+
 
     /**
      * 新增数据

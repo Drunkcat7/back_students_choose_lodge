@@ -23,18 +23,6 @@ public class BuildingController {
     private BuildingService buildingService;
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public Building selectOne(Integer id) {
-        return this.buildingService.queryById(id);
-    }
-
-
-    /**
      * 新建宿舍楼
      * @param buildingName,buildingFloor,buildingRoomSum,sex
      * @return 新增房间数
@@ -66,5 +54,22 @@ public class BuildingController {
     public boolean deleteBuilding(String buildingName) {
         return this.buildingService.deleteByBuildingName(buildingName);
     }
+
+
+
+
+
+    /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public Building selectOne(Integer id) {
+        return this.buildingService.queryById(id);
+    }
+
 
 }
