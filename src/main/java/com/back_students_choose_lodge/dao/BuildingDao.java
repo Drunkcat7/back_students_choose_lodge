@@ -15,10 +15,10 @@ public interface BuildingDao {
     /**
      * 通过主键删除数据
      *
-     * @param buildingName 宿舍楼名
+     * @param buildingId 宿舍楼名
      * @return 影响行数
      */
-    int deleteByBuildingName(String buildingName);
+    int deleteByBuildingId(Integer buildingId);
 
     /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

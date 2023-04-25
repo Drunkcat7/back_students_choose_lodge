@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService {
      * @return 对象列表
      */
     @Override
-    public List<Room> queryAllRoom(int buildingId) {
+    public List<Room> queryAllRoom(Integer buildingId) {
         Room room = new Room();
         room.setBuildingId(buildingId);
         return this.roomDao.queryAll(room);

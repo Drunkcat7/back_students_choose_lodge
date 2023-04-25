@@ -32,7 +32,7 @@ public class RoomController {
      */
     @GetMapping("/queryAllRoom")
     @Role(roles = {"admin"})//管理员
-    public List<Room> queryAllRoom(int buildingId) {
+    public List<Room> queryAllRoom(Integer buildingId) {
         return this.roomService.queryAllRoom(buildingId);
     }
 

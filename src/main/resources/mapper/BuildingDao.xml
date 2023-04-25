@@ -29,10 +29,10 @@
     </select>
 
     <!--通过楼名删除-->
-    <delete id="deleteByBuildingName">
+    <delete id="deleteByBuildingId">
         delete
         from students_choose_lodge_database.building
-        where building_name = #{buildingName}
+        where building_id = #{buildingId}
     </delete>
 
     <!--通过实体作为筛选条件查询-->

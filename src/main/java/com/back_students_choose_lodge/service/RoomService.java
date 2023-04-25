@@ -18,7 +18,7 @@ public interface RoomService {
      * @param buildingId 宿舍楼id
      * @return 对象列表
      */
-    List<Room> queryAllRoom(int buildingId);
+    List<Room> queryAllRoom(Integer buildingId);
 
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
 

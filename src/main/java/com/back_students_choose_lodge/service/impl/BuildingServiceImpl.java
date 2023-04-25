@@ -31,8 +31,8 @@ public class BuildingServiceImpl implements BuildingService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteByBuildingName(String buildingName) {
-        return this.buildingDao.deleteByBuildingName(buildingName) > 0;
+    public boolean deleteByBuildingId(Integer buildingId) {
+        return this.buildingDao.deleteByBuildingId(buildingId) > 0;
     }
 
     @Override
