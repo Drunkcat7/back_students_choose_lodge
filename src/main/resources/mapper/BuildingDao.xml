@@ -28,6 +28,13 @@
         where building_id = (select max(building_id) from students_choose_lodge_database.building)
     </select>
 
+    <!--通过楼名删除-->
+    <delete id="deleteByBuildingName">
+        delete
+        from students_choose_lodge_database.building
+        where building_name = #{buildingName}
+    </delete>
+
 <!--    ～～～～～～～～～～～分界线～～～～～～～～～～～～～～～ -->
 
     <!--查询单个-->

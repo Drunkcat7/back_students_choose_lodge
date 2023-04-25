@@ -56,4 +56,15 @@ public class BuildingController {
         return this.buildingService.newBuilding(building);
     }
 
+    /**
+     * 通过宿舍楼名删除数据
+     * @param buildingName 宿舍楼名
+     * @return 是否成功
+     */
+    @PostMapping("/deleteBuilding")
+    @Role(roles = {"admin"})//管理员
+    public boolean deleteBuilding(String buildingName) {
+        return this.buildingService.deleteByBuildingName(buildingName);
+    }
+
 }

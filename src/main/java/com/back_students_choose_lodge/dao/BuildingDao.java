@@ -12,6 +12,15 @@ import java.util.List;
  * @since 2023-04-25 17:44:13
  */
 public interface BuildingDao {
+    /**
+     * 通过主键删除数据
+     *
+     * @param buildingName 宿舍楼名
+     * @return 影响行数
+     */
+    int deleteByBuildingName(String buildingName);
+
+    /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**
      * 新增数据

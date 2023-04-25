@@ -12,6 +12,16 @@ import java.util.List;
  */
 public interface BuildingService {
     /**
+     * 通过主键删除数据
+     *
+     * @param buildingName 宿舍楼名
+     * @return 影响行数
+     */
+    boolean deleteByBuildingName(String buildingName);
+
+    /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+    /**
      * 新建宿舍楼
      * @param building
      * @return 新增房间数

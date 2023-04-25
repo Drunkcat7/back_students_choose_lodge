@@ -24,6 +24,17 @@ public class BuildingServiceImpl implements BuildingService {
     @Resource
     private RoomDao roomDao;
 
+
+    /**
+     * 通过宿舍楼名删除数据
+     * @param buildingName 宿舍楼名
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteByBuildingName(String buildingName) {
+        return this.buildingDao.deleteByBuildingName(buildingName) > 0;
+    }
+
     /**
      * 新建宿舍楼
      * @param building
@@ -72,6 +83,7 @@ public class BuildingServiceImpl implements BuildingService {
         }
         return this.roomDao.insertRooms(roomList);
     }
+
 
 
     /**～～～～～～～～～～～～～～～～～～～～～～～～～～～～·*/
