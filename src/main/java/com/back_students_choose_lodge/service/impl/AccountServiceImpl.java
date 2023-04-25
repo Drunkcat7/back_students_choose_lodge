@@ -47,6 +47,7 @@ public class AccountServiceImpl implements AccountService {
         if (loginUser == null) return null;
         map.put("uid", loginUser.getUid());
         map.put("user", loginUser.getUser());
+        map.put("level", loginUser.getLevel());
         //登录成功生成token
         String token = JwtUtil.getJwtToken(loginUser.getUid(), loginUser.getUser(), loginUser.getLevel());
         map.put("token", token);
