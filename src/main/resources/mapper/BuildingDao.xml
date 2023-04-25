@@ -35,17 +35,6 @@
         where building_name = #{buildingName}
     </delete>
 
-    <!--查询单个通过宿舍楼名-->
-    <select id="queryByBuildingName" resultMap="BuildingMap">
-        select building_id,
-               building_name,
-               building_floor,
-               building_room_sum,
-               sex
-        from students_choose_lodge_database.building
-        where building_name = #{buildingName}
-    </select>
-
 <!--    ～～～～～～～～～～～分界线～～～～～～～～～～～～～～～ -->
 
     <!--查询单个-->

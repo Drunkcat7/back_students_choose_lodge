@@ -26,14 +26,13 @@ public class RoomServiceImpl implements RoomService {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param buildingName 宿舍楼名
+     * @param buildingId 宿舍楼id
      * @return 对象列表
      */
     @Override
-    public List<Room> queryAllRoomByBuildingName(String buildingName) {
-        Building building = this.buildingDao.queryByBuildingName(buildingName);
+    public List<Room> queryAllRoom(int buildingId) {
         Room room = new Room();
-        room.setBuildingId(building.getBuildingId());
+        room.setBuildingId(buildingId);
         return this.roomDao.queryAll(room);
     }
 

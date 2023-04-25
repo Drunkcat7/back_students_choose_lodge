@@ -24,18 +24,16 @@ public class RoomController {
     private RoomService roomService;
 
 
-
-
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param buildingName 宿舍楼号
+     * @param buildingId 宿舍楼号
      * @return 对象列表
      */
     @GetMapping("/queryAllRoom")
     @Role(roles = {"admin"})//管理员
-    public List<Room> queryAllRoom(String buildingName) {
-        return this.roomService.queryAllRoomByBuildingName(buildingName);
+    public List<Room> queryAllRoom(int buildingId) {
+        return this.roomService.queryAllRoom(buildingId);
     }
 
 

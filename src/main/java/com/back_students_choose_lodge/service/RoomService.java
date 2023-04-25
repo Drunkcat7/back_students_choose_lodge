@@ -15,10 +15,10 @@ public interface RoomService {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param buildingName 宿舍楼名
+     * @param buildingId 宿舍楼id
      * @return 对象列表
      */
-    List<Room> queryAllRoomByBuildingName(String buildingName);
+    List<Room> queryAllRoom(int buildingId);
 
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
 
