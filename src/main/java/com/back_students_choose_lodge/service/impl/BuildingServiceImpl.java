@@ -24,11 +24,20 @@ public class BuildingServiceImpl implements BuildingService {
      * @param building
      * @return 是否成功
      */
+    /**
+     * 楼id  buildingId
+     * 楼名   buildingName
+     * 楼层   buildingFloor
+     * 每层房数 buildingRoomSum
+     * 性别   sex
+     */
     @Override
     public boolean newBuilding(Building building) {
-        this.buildingDao.insert(building);
-
-        return false;
+//        1. 新增宿舍楼
+        int status = this.buildingDao.insert(building);
+//        2. 宿舍楼 中建 房间
+//        外层循环(楼层)，里层循环(每层房数)，房间名字(楼名-101)
+        return status == 1 ? true : false;
     }
 
 

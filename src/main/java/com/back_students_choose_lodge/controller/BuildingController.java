@@ -1,6 +1,7 @@
 package com.back_students_choose_lodge.controller;
 
 import com.back_students_choose_lodge.entity.Building;
+import com.back_students_choose_lodge.my_interceptor.Role;
 import com.back_students_choose_lodge.service.BuildingService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,23 @@ public class BuildingController {
     @GetMapping("selectOne")
     public Building selectOne(Integer id) {
         return this.buildingService.queryById(id);
+    }
+
+    @PostMapping("/newBuilding")
+    @Role(roles = {"admin"})//管理员
+    public boolean newBuilding(String buildingName, int buildingFloor, int buildingRoomSum, String sex) {
+        /**
+         * 楼名   buildingName
+         * 楼层   buildingFloor
+         * 每层房数 buildingRoomSum
+         * 性别   sex
+         */
+        Building building = new Building();
+        building.setBuildingName(buildingName);
+        building.setBuildingFloor(buildingFloor);
+        building.setBuildingRoomSum(buildingRoomSum);
+        building.setSex(sex);
+        return this.buildingService.newBuilding(building);
     }
 
 }
