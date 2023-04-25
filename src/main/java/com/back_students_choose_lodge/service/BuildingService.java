@@ -19,6 +19,14 @@ public interface BuildingService {
      */
     boolean deleteByBuildingName(String buildingName);
 
+
+    /**
+     * 查询所有宿舍楼
+     * @param
+     * @return
+     */
+    List<Building> queryBuildingAll();
+
     /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**

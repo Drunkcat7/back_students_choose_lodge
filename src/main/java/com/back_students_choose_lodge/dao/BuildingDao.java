@@ -37,11 +37,14 @@ public interface BuildingDao {
     Building queryLastInfo();
 
     /**
-     * 通过宿舍楼名查询
-     * @param buildingName
-     * @return 数据对象
+     * 通过实体作为筛选条件查询
+     *
+     * @param building 实例对象
+     * @return 对象列表
      */
-    Building queryByBuildingName(String buildingName);
+    List<Building> queryAll(Building building);
+
+
 
     /** ------------------------------- */
 
@@ -63,13 +66,6 @@ public interface BuildingDao {
     List<Building> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
-    /**
-     * 通过实体作为筛选条件查询
-     *
-     * @param building 实例对象
-     * @return 对象列表
-     */
-    List<Building> queryAll(Building building);
 
 
 

@@ -6,6 +6,7 @@ import com.back_students_choose_lodge.service.BuildingService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Building)表控制层
@@ -24,6 +25,7 @@ public class BuildingController {
 
     /**
      * 新建宿舍楼
+     *
      * @param buildingName,buildingFloor,buildingRoomSum,sex
      * @return 新增房间数
      */
@@ -46,6 +48,7 @@ public class BuildingController {
 
     /**
      * 通过宿舍楼名删除数据
+     *
      * @param buildingName 宿舍楼名
      * @return 是否成功
      */
@@ -55,9 +58,17 @@ public class BuildingController {
         return this.buildingService.deleteByBuildingName(buildingName);
     }
 
-
-
-
+    /**
+     * 查询所有宿舍楼
+     *
+     * @param
+     * @return 对象列表
+     */
+    @GetMapping("/queryBuildingAll")
+    @Role(roles = {"admin"})//管理员
+    public List<Building> queryBuildingAll() {
+        return this.buildingService.queryBuildingAll();
+    }
 
     /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /**

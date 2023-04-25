@@ -35,6 +35,12 @@ public class BuildingServiceImpl implements BuildingService {
         return this.buildingDao.deleteByBuildingName(buildingName) > 0;
     }
 
+    @Override
+    public List<Building> queryBuildingAll() {
+        Building building = new Building();
+        return this.buildingDao.queryAll(building);
+    }
+
     /**
      * 新建宿舍楼
      * @param building
