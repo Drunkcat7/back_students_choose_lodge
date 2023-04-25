@@ -21,6 +21,12 @@ public interface BuildingDao {
      */
     int insert(Building building);
 
+    /**
+     * 查询最新一条的的宿舍楼信息
+     * @return 实例对象
+     */
+    Building queryLastInfo();
+
     /** ------------------------------- */
 
     /**

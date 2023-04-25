@@ -2,10 +2,12 @@ package com.back_students_choose_lodge.service.impl;
 
 import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.dao.BuildingDao;
+import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.service.BuildingService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +37,38 @@ public class BuildingServiceImpl implements BuildingService {
     public boolean newBuilding(Building building) {
 //        1. 新增宿舍楼
         int status = this.buildingDao.insert(building);
-//        2. 宿舍楼 中建 房间
+
+//        2. 查询新增的宿舍楼
+        Building buildingLast = this.buildingDao.queryLastInfo();
+        System.out.print(buildingLast.getBuildingId());
+
+//        3. 宿舍楼 中建 房间
 //        外层循环(楼层)，里层循环(每层房数)，房间名字(楼名-101)
+        List<Room> roomList = new ArrayList<Room>();
+        String roomName = "";
+//        楼层循环
+        for (int floor = 1; floor <= buildingLast.getBuildingFloor(); floor++) {
+//            每层房数循环
+            for (int roomSum = 1; roomSum <= buildingLast.getBuildingRoomSum(); roomSum++) {
+//                新建房间room
+                Room room = new Room();
+//                楼id
+                room.setBuildingId(buildingLast.getBuildingId());
+//                房名
+                roomName = buildingLast.getBuildingName() + "-";
+                if (roomSum <= 9) {
+                    roomName += floor + "0" + roomSum;
+                } else {
+                    roomName += floor + "" + roomSum;
+                }
+                room.setRoomName(roomName);
+//                System.out.println("roomName: " + roomName);
+//                存入roomList这个list中
+                roomList.add(room);
+            }
+        }
+        System.out.println(roomList.size());
+
         return status == 1 ? true : false;
     }
 

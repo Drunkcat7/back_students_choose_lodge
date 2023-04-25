@@ -16,6 +16,18 @@
         insert into students_choose_lodge_database.building(building_name, building_floor, building_room_sum, sex)
         values (#{buildingName}, #{buildingFloor}, #{buildingRoomSum}, #{sex})
     </insert>
+
+     <!--查询最新一条的的宿舍楼信息-->
+    <select id="queryLastInfo" resultMap="BuildingMap">
+        select building_id,
+               building_name,
+               building_floor,
+               building_room_sum,
+               sex
+        from students_choose_lodge_database.building
+        where building_id = (select max(building_id) from students_choose_lodge_database.building)
+    </select>
+
 <!--    ～～～～～～～～～～～分界线～～～～～～～～～～～～～～～ -->
 
     <!--查询单个-->
