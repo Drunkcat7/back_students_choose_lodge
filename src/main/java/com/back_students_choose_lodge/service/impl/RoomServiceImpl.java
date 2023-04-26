@@ -70,8 +70,8 @@ public class RoomServiceImpl implements RoomService {
         UserInfo userInfo =  this.userInfoDao.queryById(uid);
         System.out.println(userInfo.getSex());
         System.out.println(userInfo.getProfessional());
-//
-        return null;
+//      2. 获取对应的room表数据
+        return this.roomDao.queryByProfessionalAndSex(userInfo.getSex(),userInfo.getProfessional());
     }
 
     /**～～～～～～～～～～～～～～～～～～～～～～·*/

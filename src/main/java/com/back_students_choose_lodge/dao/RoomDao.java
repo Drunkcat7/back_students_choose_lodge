@@ -37,6 +37,13 @@ public interface RoomDao {
      */
     int update(Room room);
 
+    /**
+     * 获取与性别 专业 相关的房间
+     * @param sex
+     * @param professional
+     * @return
+     */
+    List<Room> queryByProfessionalAndSex(@Param("sex") String sex, @Param("professional") String professional);
 
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

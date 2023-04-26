@@ -57,6 +57,22 @@
         where room_id = #{roomId}
     </update>
 
+    <!--查询单个-->
+    <select id="queryByProfessionalAndSex" resultMap="RoomMap">
+        select
+            room.room_id,
+            building.building_id,
+            room_name,
+            professional
+        from
+            room,
+            building
+        where
+            room.building_id = building.building_id and
+            sex = #{sex} and
+            professional = #{professional}
+    </select>
+
 <!--    分界线～～～～～～～～～～～～～～～～～～～～～·-->
 
     <!--新增所有列-->
