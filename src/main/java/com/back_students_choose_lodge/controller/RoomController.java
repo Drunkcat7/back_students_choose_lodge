@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Room)表控制层
@@ -64,7 +65,7 @@ public class RoomController {
      */
     @GetMapping("/queryMyAllRoom")
     @Role(roles = {"user"})
-    public List<Room> queryMyAllRoom(@CurrentUser CurrentUserInfo user) {
+    public List<Map<String,Object>> queryMyAllRoom(@CurrentUser CurrentUserInfo user) {
         return this.roomService.queryMyAllRoom(user.getUid());
     }
 

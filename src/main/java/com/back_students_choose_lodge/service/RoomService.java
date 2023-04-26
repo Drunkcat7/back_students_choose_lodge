@@ -3,6 +3,7 @@ package com.back_students_choose_lodge.service;
 import com.back_students_choose_lodge.entity.Room;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Room)表服务接口
@@ -34,7 +35,7 @@ public interface RoomService {
      * @param uid 用户id
      * @return 对象列表
      */
-    List<Room> queryMyAllRoom(Integer uid);
+    List<Map<String,Object>> queryMyAllRoom(Integer uid);
 
 
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
