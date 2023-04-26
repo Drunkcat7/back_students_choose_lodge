@@ -36,6 +36,25 @@ public class RoomServiceImpl implements RoomService {
         return this.roomDao.queryAll(room);
     }
 
+    /**
+     * 修改房间专业
+     * @param professional
+     * @param roomId 房间id列表
+     * @return 影响行数
+     */
+    @Override
+    public int updateProfessionalByRoomId(String professional, Integer[] roomId) {
+        int affectedNum = 0;
+        for (Integer integer : roomId) {
+            Room room = new Room();
+            room.setRoomId(integer);
+            room.setProfessional(professional);
+            this.roomDao.update(room);
+            affectedNum++;
+        }
+        return affectedNum;
+    }
+
     /**～～～～～～～～～～～～～～～～～～～～～～·*/
 
     /**
