@@ -70,6 +70,18 @@ public class BuildingController {
         return this.buildingService.queryBuildingAll();
     }
 
+    /**
+     * 修改宿舍楼性别
+     *
+     * @param building
+     * @return 修改后的实例对象
+     */
+    @PutMapping("/updateBuildingSex")
+    @Role(roles = {"admin"})//管理员
+    public Building updateBuildingSex(Building building) {
+        return this.buildingService.updateBuildingSex(building);
+    }
+
     /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /**
      * 通过主键查询单条数据

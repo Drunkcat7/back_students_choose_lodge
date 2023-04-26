@@ -44,6 +44,14 @@ public interface BuildingDao {
      */
     List<Building> queryAll(Building building);
 
+    /**
+     * 修改数据
+     *
+     * @param building 实例对象
+     * @return 影响行数
+     */
+    int update(Building building);
+
 
 
     /** ------------------------------- */
@@ -85,13 +93,7 @@ public interface BuildingDao {
      */
     int insertOrUpdateBatch(@Param("entities") List<Building> entities);
 
-    /**
-     * 修改数据
-     *
-     * @param building 实例对象
-     * @return 影响行数
-     */
-    int update(Building building);
+
 
     /**
      * 通过主键删除数据

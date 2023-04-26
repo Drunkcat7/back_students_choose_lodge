@@ -58,6 +58,25 @@
             </if>
         </where>
     </select>
+    <!--通过主键修改数据-->
+    <update id="update">
+        update students_choose_lodge_database.building
+        <set>
+            <if test="buildingName != null and buildingName != ''">
+                building_name = #{buildingName},
+            </if>
+            <if test="buildingFloor != null">
+                building_floor = #{buildingFloor},
+            </if>
+            <if test="buildingRoomSum != null">
+                building_room_sum = #{buildingRoomSum},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+        </set>
+        where building_id = #{buildingId}
+    </update>
 
 <!--    ～～～～～～～～～～～分界线～～～～～～～～～～～～～～～ -->
 
@@ -105,25 +124,7 @@
         values(building_room_sum) , sex = values(sex)
     </insert>
 
-    <!--通过主键修改数据-->
-    <update id="update">
-        update students_choose_lodge_database.building
-        <set>
-            <if test="buildingName != null and buildingName != ''">
-                building_name = #{buildingName},
-            </if>
-            <if test="buildingFloor != null">
-                building_floor = #{buildingFloor},
-            </if>
-            <if test="buildingRoomSum != null">
-                building_room_sum = #{buildingRoomSum},
-            </if>
-            <if test="sex != null and sex != ''">
-                sex = #{sex},
-            </if>
-        </set>
-        where building_id = #{buildingId}
-    </update>
+
 
     <!--通过主键删除-->
     <delete id="deleteById">
