@@ -27,6 +27,13 @@ public interface BuildingService {
      */
     List<Building> queryBuildingAll();
 
+    /**
+     * 修改宿舍楼性别
+     * @param building
+     * @return 修改后的实例对象
+     */
+    Building updateBuildingSex(Building building);
+
     /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**

@@ -27,7 +27,8 @@ public class BuildingServiceImpl implements BuildingService {
 
     /**
      * 通过宿舍楼名删除数据
-     * @param buildingName 宿舍楼名
+     *
+     * @param buildingId 宿舍楼id
      * @return 是否成功
      */
     @Override
@@ -39,6 +40,18 @@ public class BuildingServiceImpl implements BuildingService {
     public List<Building> queryBuildingAll() {
         Building building = new Building();
         return this.buildingDao.queryAll(building);
+    }
+
+    /**
+     * 修改宿舍楼性别
+     *
+     * @param building
+     * @return 修改后的实例对象
+     */
+    @Override
+    public Building updateBuildingSex(Building building) {
+        this.buildingDao.update(building);
+        return this.queryById(building.getBuildingId());
     }
 
     /**
@@ -90,10 +103,6 @@ public class BuildingServiceImpl implements BuildingService {
         return this.roomDao.insertRooms(roomList);
     }
 
-
-
-    /**～～～～～～～～～～～～～～～～～～～～～～～～～～～～·*/
-
     /**
      * 通过ID查询单条数据
      *
@@ -104,6 +113,10 @@ public class BuildingServiceImpl implements BuildingService {
     public Building queryById(Integer buildingId) {
         return this.buildingDao.queryById(buildingId);
     }
+
+
+    /**～～～～～～～～～～～～～～～～～～～～～～～～～～～～·*/
+
 
     /**
      * 查询多条数据
