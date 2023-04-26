@@ -37,6 +37,23 @@ public class RoomController {
     }
 
 
+    /**
+     * 修改房间专业
+     * @param professional
+     * @param roomId 房间id列表
+     * @return 影响行数
+     */
+    @PutMapping("/updateProfessional")
+    @Role(roles = {"admin"})//管理员
+    public Integer updateProfessional(String professional, Integer[] roomId) {
+        System.out.println("有多少个 "+roomId.length);
+        for(int i = 0; i < roomId.length; i++){
+            System.out.println(roomId[i]);
+        }
+        return this.roomService.updateProfessionalByRoomId(professional,roomId);
+    }
+
+
 
     /** ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～· */
 

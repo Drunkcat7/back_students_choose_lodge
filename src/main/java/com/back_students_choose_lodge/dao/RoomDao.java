@@ -29,6 +29,15 @@ public interface RoomDao {
      */
     List<Room> queryAll(Room room);
 
+    /**
+     * 修改数据
+     *
+     * @param room 实例对象
+     * @return 影响行数
+     */
+    int update(Room room);
+
+
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**
@@ -77,13 +86,6 @@ public interface RoomDao {
      */
     int insertOrUpdateBatch(@Param("entities") List<Room> entities);
 
-    /**
-     * 修改数据
-     *
-     * @param room 实例对象
-     * @return 影响行数
-     */
-    int update(Room room);
 
     /**
      * 通过主键删除数据

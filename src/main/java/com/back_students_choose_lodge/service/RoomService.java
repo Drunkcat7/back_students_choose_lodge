@@ -20,6 +20,15 @@ public interface RoomService {
      */
     List<Room> queryAllRoom(Integer buildingId);
 
+    /**
+     * 修改专业
+     *
+     * @param roomId 房间id列表
+     * @return 影响行数
+     */
+    int updateProfessionalByRoomId(String professional, Integer[] roomId);
+
+
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
 
     /**
