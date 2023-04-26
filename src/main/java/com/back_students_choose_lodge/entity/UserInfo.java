@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (UserInfo)实体类
  *
  * @author makejava
- * @since 2023-04-25 22:35:32
+ * @since 2023-04-26 13:57:09
  */
 public class UserInfo implements Serializable {
-    private static final long serialVersionUID = 570961896311192727L;
+    private static final long serialVersionUID = 420958461523430893L;
     /**
      * 用户信息id
      */
@@ -54,6 +54,10 @@ public class UserInfo implements Serializable {
      * 是否可以修改tag(0可以修改，1不可以修改)
      */
     private Integer isUpdateTag;
+    /**
+     * 个签
+     */
+    private String introduce;
 
 
     public Integer getUserInfoId() {
@@ -142,6 +146,14 @@ public class UserInfo implements Serializable {
 
     public void setIsUpdateTag(Integer isUpdateTag) {
         this.isUpdateTag = isUpdateTag;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
 }

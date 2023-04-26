@@ -14,6 +14,7 @@
         <result property="isSelectedRoom" column="is_selected_room" jdbcType="INTEGER"/>
         <result property="isConfirmUserInfo" column="is_confirm_user_info" jdbcType="INTEGER"/>
         <result property="isUpdateTag" column="is_update_tag" jdbcType="INTEGER"/>
+        <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
     </resultMap>
     <!--查询所有普通用户的信息-->
     <select id="queryAllUser" resultMap="UserInfoMap">
@@ -93,6 +94,16 @@
     <update id="confirmUserInfo">
         update user_info set  is_confirm_user_info = 1
         where user_info_id = #{userInfoId}
+    </update>
+    <!--修改个签-->
+    <update id="updateIntroduce">
+        update user_info set  introduce = #{introduce}
+        where uid = #{uid}
+    </update>
+    <!--确认信息-->
+    <update id="confirmIsUpdateTag">
+        update user_info set  is_update_tag = 1
+        where uid = #{uid}
     </update>
     <!--===========================================分界线===========================================-->
 

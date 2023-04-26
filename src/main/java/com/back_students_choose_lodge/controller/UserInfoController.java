@@ -79,11 +79,36 @@ public class UserInfoController {
         return this.userInfoService.addUser(userInfo, account);
     }
 
+    /**
+     * 确认用户信息
+     *
+     * @param userInfoId
+     * @return
+     */
     @GetMapping("/confirmUserInfo")
     @Role(roles = {"user"})
     public Boolean confirmUserInfo(Integer userInfoId) {
         int i = this.userInfoService.confirmUserInfo(userInfoId);
         return i != 0;
+    }
+
+    /**
+     * 修改个性签名
+     *
+     * @param introduce
+     * @param user
+     * @return
+     */
+    @PutMapping("/updateIntroduce")
+    @Role(roles = {"user"})
+    public Boolean updateIntroduce(String introduce, @CurrentUser CurrentUserInfo user) {
+        return this.userInfoService.updateIntroduce(user.getUid(), introduce);
+    }
+
+    @GetMapping("/checkUserTag")
+    @Role(roles = {"user"})
+    public Boolean checkUserTag(@CurrentUser CurrentUserInfo user) {
+        return this.userInfoService.queryUserInfoByUid(user.getUid()).getIsUpdateTag() == 1;
     }
 }
 

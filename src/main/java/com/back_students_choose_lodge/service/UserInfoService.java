@@ -2,6 +2,7 @@ package com.back_students_choose_lodge.service;
 
 import com.back_students_choose_lodge.entity.Account;
 import com.back_students_choose_lodge.entity.UserInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -32,6 +33,7 @@ public interface UserInfoService {
 
     /**
      * 添加用户
+     *
      * @param userInfo
      * @param account
      * @return
@@ -40,10 +42,19 @@ public interface UserInfoService {
 
     /**
      * 查询用户自己的信息
+     *
      * @param uid
      * @return
      */
     UserInfo queryUserInfoByUid(Integer uid);
 
     int confirmUserInfo(Integer userInfoId);
+
+    /**
+     * 修改个性签名
+     *
+     * @param introduce
+     * @return
+     */
+    Boolean updateIntroduce(Integer uid, String introduce);
 }

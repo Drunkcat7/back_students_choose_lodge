@@ -47,6 +47,21 @@ public interface UserInfoDao {
 
 
     int confirmUserInfo(Integer userInfoId);
+
+    /**
+     * 修改个性签名
+     *
+     * @param introduce
+     * @return
+     */
+    int updateIntroduce(@Param("uid") Integer uid, @Param("introduce") String introduce);
+
+    /**
+     * 已经确认标签
+     * @param uid
+     * @return
+     */
+    int confirmIsUpdateTag(@Param("uid") Integer uid);
     /*=============================================================分界线=============================================================*/
 
 

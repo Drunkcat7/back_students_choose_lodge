@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.back_students_choose_lodge.dao.UserSelectedTagDao">
+
+    <resultMap type="com.back_students_choose_lodge.entity.UserSelectedTag" id="UserSelectedTagMap">
+        <result property="userSelectedTagId" column="user_selected_tag_id" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="tagId" column="tag_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userSelectedTagId" useGeneratedKeys="true">
+        insert into user_selected_tag(uid, tag_id)
+        values (#{uid}, #{tagId})
+    </insert>
+    <!--统计uid所选的数量-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user_selected_tag
+        where uid = #{uid}
+    </select>
+    <!--查询uid的所有TagId-->
+    <select id="queryTagId" resultType="java.lang.Integer">
+        select tag_id
+        from user_selected_tag
+        where uid = #{uid}
+    </select>
+    <!--通过主键删除-->
+    <delete id="deleteByUidAndTagId">
+        delete
+        from user_selected_tag
+        where uid = #{uid}
+          and tag_id = #{tagId}
+    </delete>
+    <!--========================line=======================-->
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserSelectedTagMap">
+        select user_selected_tag_id,
+               uid,
+               tag_id
+        from user_selected_tag
+        where user_selected_tag_id = #{userSelectedTagId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserSelectedTagMap">
+        select
+        user_selected_tag_id, uid, tag_id
+        from user_selected_tag
+        <where>
+            <if test="userSelectedTagId != null">
+                and user_selected_tag_id = #{userSelectedTagId}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="tagId != null">
+                and tag_id = #{tagId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+
+    <insert id="insertOrUpdateBatch" keyProperty="userSelectedTagId" useGeneratedKeys="true">
+        insert into user_selected_tag(uid, tag_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.uid}, #{entity.tagId})
+        </foreach>
+        on duplicate key update
+        uid = values(uid),
+        tag_id = values(tag_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user_selected_tag
+        <set>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="tagId != null">
+                tag_id = #{tagId},
+            </if>
+        </set>
+        where user_selected_tag_id = #{userSelectedTagId}
+    </update>
+
+
+
+</mapper>
+

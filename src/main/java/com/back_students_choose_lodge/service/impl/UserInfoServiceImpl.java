@@ -69,6 +69,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 查询用户自己的信息
+     *
      * @param uid
      * @return
      */
@@ -79,12 +80,24 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 确认信息
+     *
      * @param userInfoId
      * @return
      */
     @Override
     public int confirmUserInfo(Integer userInfoId) {
         return this.userInfoDao.confirmUserInfo(userInfoId);
+    }
+
+    /**
+     * 修改个签
+     * @param uid
+     * @param introduce
+     * @return
+     */
+    @Override
+    public Boolean updateIntroduce(Integer uid, String introduce) {
+        return this.userInfoDao.updateIntroduce(uid, introduce) != 0;
     }
 
 
