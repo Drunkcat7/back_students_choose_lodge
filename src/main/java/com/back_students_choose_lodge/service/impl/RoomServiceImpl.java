@@ -1,9 +1,11 @@
 package com.back_students_choose_lodge.service.impl;
 
 import com.back_students_choose_lodge.dao.BuildingDao;
+import com.back_students_choose_lodge.dao.UserInfoDao;
 import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.dao.RoomDao;
+import com.back_students_choose_lodge.entity.UserInfo;
 import com.back_students_choose_lodge.service.RoomService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class RoomServiceImpl implements RoomService {
     private RoomDao roomDao;
     @Resource
     private BuildingDao buildingDao;
+    @Resource
+    private UserInfoDao userInfoDao;
 
     /**
      * 通过实体作为筛选条件查询
@@ -53,6 +57,21 @@ public class RoomServiceImpl implements RoomService {
             affectedNum++;
         }
         return affectedNum;
+    }
+
+    /**
+     * 获取我的所有房间
+     * @param uid 用户id
+     * @return 对象列表
+     */
+    @Override
+    public List<Room> queryMyAllRoom(Integer uid) {
+//        1.获取到用户的 性别 与 专业
+        UserInfo userInfo =  this.userInfoDao.queryById(uid);
+        System.out.println(userInfo.getSex());
+        System.out.println(userInfo.getProfessional());
+//
+        return null;
     }
 
     /**～～～～～～～～～～～～～～～～～～～～～～·*/
