@@ -31,6 +31,12 @@
         where uid = #{uid}
           and tag_id = #{tagId}
     </delete>
+    <!--查询uid的所有Tag-->
+    <select id="queryTag" resultType="java.lang.String">
+        select tag.tag_context
+        from user_selected_tag,tag
+        where uid = #{uid} and user_selected_tag.tag_id = tag.tag_id
+    </select>
     <!--========================line=======================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserSelectedTagMap">

@@ -57,6 +57,15 @@
         where room_id = #{roomId}
     </update>
 
+    <!--房间所有用户的共同标签-->
+    <select id="queryUserCommonTag" resultType="java.lang.String">
+        SELECT t.tag_context
+        FROM user_selected_tag ut
+                 INNER JOIN tag t ON ut.tag_id = t.tag_id
+        WHERE ut.uid IN (SELECT uid FROM user_selected_room WHERE room_id = #{roomId})
+        GROUP BY t.tag_context
+        HAVING COUNT(DISTINCT ut.uid) = (SELECT COUNT(DISTINCT uid) FROM user_selected_room WHERE room_id = #{roomId})
+    </select>
 <!--    分界线～～～～～～～～～～～～～～～～～～～～～·-->
 
     <!--新增所有列-->

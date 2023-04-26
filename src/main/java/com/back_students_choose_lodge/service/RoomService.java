@@ -3,6 +3,7 @@ package com.back_students_choose_lodge.service;
 import com.back_students_choose_lodge.entity.Room;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Room)表服务接口
@@ -29,6 +30,20 @@ public interface RoomService {
     int updateProfessionalByRoomId(String professional, Integer[] roomId);
 
 
+    /**
+     * 查询该房间所有用户的共同标签
+     *
+     * @param roomId
+     * @return
+     */
+    List<String> queryUserCommonTag(Integer roomId);
+
+    /**
+     * 获取房间的用户信息
+     * @param roomId
+     * @return
+     */
+    List<Map<String, Object>> roomInfo(Integer roomId);
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
 
     /**

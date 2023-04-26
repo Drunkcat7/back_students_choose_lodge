@@ -86,7 +86,8 @@
                id_card,
                is_selected_room,
                is_confirm_user_info,
-               is_update_tag
+               is_update_tag,
+               introduce
         from user_info
         where uid = #{uid}
     </select>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Room)表控制层
@@ -54,7 +55,27 @@ public class RoomController {
     }
 
 
+    /**
+     * 查询该房间所有用户的共同标签
+     * @param roomId
+     * @return
+     */
+    @GetMapping("/userCommonTag")
+    @Role(roles = {"user"})
+    public List<String> userCommonTag(Integer roomId) {
+        return this.roomService.queryUserCommonTag(roomId);
+    }
 
+    /**
+     * 获取房间的用户信息
+     * @param roomId
+     * @return
+     */
+    @GetMapping("/roomInfo")
+    @Role(roles = {"user"})
+    public List<Map<String, Object>> roomInfo(Integer roomId) {
+        return this.roomService.roomInfo(roomId);
+    }
     /** ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～· */
 
     /**

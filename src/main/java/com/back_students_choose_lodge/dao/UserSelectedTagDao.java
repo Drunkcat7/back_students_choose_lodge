@@ -46,6 +46,13 @@ public interface UserSelectedTagDao {
      * @return 影响行数
      */
     int deleteByUidAndTagId(@Param("tagId") Integer tagId, @Param("uid") Integer uid);
+
+    /**
+     * 获取用户的所有标签
+     * @param uid
+     * @return
+     */
+    List<String> queryTag(Integer uid);
     /*====================line=================================*/
 
     /**

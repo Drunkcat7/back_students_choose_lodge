@@ -1,14 +1,17 @@
 package com.back_students_choose_lodge.service.impl;
 
-import com.back_students_choose_lodge.dao.BuildingDao;
+import com.back_students_choose_lodge.dao.*;
 import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.entity.Room;
-import com.back_students_choose_lodge.dao.RoomDao;
+import com.back_students_choose_lodge.entity.UserInfo;
 import com.back_students_choose_lodge.service.RoomService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Room)表服务实现类
@@ -22,6 +25,12 @@ public class RoomServiceImpl implements RoomService {
     private RoomDao roomDao;
     @Resource
     private BuildingDao buildingDao;
+    @Resource
+    private UserSelectedRoomDao userSelectedRoomDao;
+    @Resource
+    private UserInfoDao userInfoDao;
+    @Resource
+    private UserSelectedTagDao userSelectedTagDao;
 
     /**
      * 通过实体作为筛选条件查询
@@ -53,6 +62,37 @@ public class RoomServiceImpl implements RoomService {
             affectedNum++;
         }
         return affectedNum;
+    }
+
+    @Override
+    public List<String> queryUserCommonTag(Integer roomId) {
+        return this.roomDao.queryUserCommonTag(roomId);
+    }
+
+    /**
+     * 获取房间的用户信息
+     *
+     * @param roomId
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> roomInfo(Integer roomId) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        List<Integer> uidList = userSelectedRoomDao.queryByRoomId(roomId);
+
+        if (uidList.size()==0) {
+            return null;
+        }
+        for (Integer uid : uidList) {
+            Map<String, Object> map = new HashMap<>();
+            UserInfo userInfo = userInfoDao.queryById(uid);
+            List<String> tags = userSelectedTagDao.queryTag(uid);
+            map.put("userInfo", userInfo);
+            map.put("tags", tags);
+            list.add(map);
+        }
+
+        return list;
     }
 
     /**～～～～～～～～～～～～～～～～～～～～～～·*/

@@ -37,6 +37,13 @@ public interface RoomDao {
      */
     int update(Room room);
 
+    /**
+     * 查询该房间所有用户的共同标签
+     * @param roomId
+     * @return
+     */
+    List<String> queryUserCommonTag(Integer roomId);
+
 
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
