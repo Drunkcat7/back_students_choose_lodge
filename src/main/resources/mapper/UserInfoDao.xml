@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.back_students_choose_lodge.dao.UserInfoDao">
+
+    <resultMap type="com.back_students_choose_lodge.entity.UserInfo" id="UserInfoMap">
+        <result property="userInfoId" column="user_info_id" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="studentId" column="student_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="professional" column="professional" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
+        <result property="isSelectedRoom" column="is_selected_room" jdbcType="INTEGER"/>
+        <result property="isConfirmUserInfo" column="is_confirm_user_info" jdbcType="INTEGER"/>
+        <result property="isUpdateTag" column="is_update_tag" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--查询所有普通用户的信息-->
+    <select id="queryAllUser" resultMap="UserInfoMap">
+        select user_info_id,
+               uid,
+               student_id,
+               name,
+               professional,
+               sex,
+               tel,
+               id_card,
+               is_selected_room,
+               is_confirm_user_info,
+               is_update_tag
+        from user_info
+    </select>
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user_info
+        <set>
+            <if test="studentId != null">
+                student_id = #{studentId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="professional != null and professional != ''">
+                professional = #{professional},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="tel != null and tel != ''">
+                tel = #{tel},
+            </if>
+            <if test="idCard != null and idCard != ''">
+                id_card = #{idCard},
+            </if>
+            <if test="isSelectedRoom != null">
+                is_selected_room = #{isSelectedRoom},
+            </if>
+            <if test="isConfirmUserInfo != null">
+                is_confirm_user_info = #{isConfirmUserInfo},
+            </if>
+            <if test="isUpdateTag != null">
+                is_update_tag = #{isUpdateTag},
+            </if>
+        </set>
+        where user_info_id = #{userInfoId}
+    </update>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userInfoId" useGeneratedKeys="true">
+        insert into user_info(uid, student_id, name, professional, sex, tel, id_card,
+                              is_confirm_user_info, is_update_tag)
+        values (#{uid}, #{studentId}, #{name}, #{professional}, #{sex}, #{tel}, #{idCard},#{isConfirmUserInfo}, #{isUpdateTag})
+    </insert>
+
+    <!--===========================================分界线===========================================-->
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserInfoMap">
+        select user_info_id,
+               uid,
+               student_id,
+               name,
+               professional,
+               sex,
+               tel,
+               id_card,
+               is_selected_room,
+               is_confirm_user_info,
+               is_update_tag
+        from user_info
+        where user_info_id = #{userInfoId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UserInfoMap">
+        select
+        user_info_id, uid, student_id, name, professional, sex, tel, id_card, is_selected_room, is_confirm_user_info,
+        is_update_tag
+        from user_info
+        <where>
+            <if test="userInfoId != null">
+                and user_info_id = #{userInfoId}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="studentId != null">
+                and student_id = #{studentId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="professional != null and professional != ''">
+                and professional = #{professional}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and id_card = #{idCard}
+            </if>
+            <if test="isSelectedRoom != null">
+                and is_selected_room = #{isSelectedRoom}
+            </if>
+            <if test="isConfirmUserInfo != null">
+                and is_confirm_user_info = #{isConfirmUserInfo}
+            </if>
+            <if test="isUpdateTag != null">
+                and is_update_tag = #{isUpdateTag}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user_info
+        <where>
+            <if test="userInfoId != null">
+                and user_info_id = #{userInfoId}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="studentId != null">
+                and student_id = #{studentId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="professional != null and professional != ''">
+                and professional = #{professional}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+            <if test="idCard != null and idCard != ''">
+                and id_card = #{idCard}
+            </if>
+            <if test="isSelectedRoom != null">
+                and is_selected_room = #{isSelectedRoom}
+            </if>
+            <if test="isConfirmUserInfo != null">
+                and is_confirm_user_info = #{isConfirmUserInfo}
+            </if>
+            <if test="isUpdateTag != null">
+                and is_update_tag = #{isUpdateTag}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertOrUpdateBatch" keyProperty="userInfoId" useGeneratedKeys="true">
+        insert into user_info(uid, student_id, name, professional, sex, tel, id_card, is_selected_room,
+        is_confirm_user_info, is_update_tag)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.uid}, #{entity.studentId}, #{entity.name}, #{entity.professional}, #{entity.sex}, #{entity.tel},
+            #{entity.idCard}, #{entity.isSelectedRoom}, #{entity.isConfirmUserInfo}, #{entity.isUpdateTag})
+        </foreach>
+        on duplicate key update
+        uid = values(uid),
+        student_id = values(student_id),
+        name = values(name),
+        professional = values(professional),
+        sex = values(sex),
+        tel = values(tel),
+        id_card = values(id_card),
+        is_selected_room = values(is_selected_room),
+        is_confirm_user_info = values(is_confirm_user_info),
+        is_update_tag = values(is_update_tag)
+    </insert>
+
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from user_info
+        where user_info_id = #{userInfoId}
+    </delete>
+</mapper>
+

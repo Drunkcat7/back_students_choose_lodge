@@ -54,6 +54,29 @@ public class AccountController {
         return ResponseEntity.ok(GetStatus.get(this.accountService.login(user, password)));
     }
 
+    /**
+     * 删除用户信息
+     *
+     * @return
+     */
+    @GetMapping("/delUser")
+    @Role(roles = {"admin"})
+    public Boolean delUser(Integer uid) {
+        return this.accountService.deleteById(uid);
+    }
+
+    /**
+     * 查询用户单条信息
+     * @param uid
+     * @return
+     */
+    @GetMapping("/getUserById")
+    @Role(roles = {"admin"})
+    public Account getUserById(Integer uid) {
+        return this.accountService.getUserById(uid);
+    }
+
+
 
     @GetMapping("/userInfo")
     @Role(roles = {"user"})//普通用户

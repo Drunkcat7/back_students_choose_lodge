@@ -23,10 +23,26 @@ public interface AccountService {
 
     /**
      * 用户登录
+     *
      * @param user
      * @param password
      * @return 登录的对象
      */
-    Map<String,Object> login(String user, String password);
+    Map<String, Object> login(String user, String password);
 
+    /**
+     * 通过主键删除数据
+     *
+     * @param uid 主键
+     * @return 影响行数
+     */
+    Boolean deleteById(Integer uid);
+
+    /**
+     * 通过主键查询用户单条信息
+     *
+     * @param uid 主键
+     * @return 影响行数
+     */
+    Account getUserById(Integer uid);
 }

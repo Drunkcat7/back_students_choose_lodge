@@ -23,5 +23,36 @@
         where user = #{user}
           and password = #{password}
     </select>
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from account where uid = #{uid}
+    </delete>
+    <!--通过主查询用户单条信息-->
+    <select id="getUserById" resultMap="AccountMap">
+        select uid,
+               user,
+               password,
+               level
+        from account
+        where uid = #{uid}
+    </select>
+    <!--通过主键修改数据-->
+    <update id="update">
+        update account
+        <set>
+            <if test="user != null and user != ''">
+                user = #{user},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+        </set>
+        where uid = #{uid} and level = 0
+    </update>
+
+    <!--获取最新一条的数据s-->
+    <select id="getNewUser" resultMap="AccountMap">
+        SELECT uid FROM account WHERE uid = (SELECT MAX(uid) FROM account);
+    </select>
 </mapper>
 
