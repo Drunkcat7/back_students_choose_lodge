@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.back_students_choose_lodge.dao.ProfessionalDao">
+
+    <resultMap type="com.back_students_choose_lodge.entity.Professional" id="ProfessionalMap">
+        <result property="professionalId" column="professional_id" jdbcType="INTEGER"/>
+        <result property="professionalContent" column="professional_content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryAll" resultMap="ProfessionalMap">
+        select
+          professional_id, professional_content
+        from professional
+    </select>
+
+    <!--======================分界线======================-->
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProfessionalMap">
+        select
+          professional_id, professional_content
+        from professional
+        <where>
+            <if test="professionalId != null">
+                and professional_id = #{professionalId}
+            </if>
+            <if test="professionalContent != null and professionalContent != ''">
+                and professional_content = #{professionalContent}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from professional
+        <where>
+            <if test="professionalId != null">
+                and professional_id = #{professionalId}
+            </if>
+            <if test="professionalContent != null and professionalContent != ''">
+                and professional_content = #{professionalContent}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="professionalId" useGeneratedKeys="true">
+        insert into professional(professional_content)
+        values (#{professionalContent})
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="professionalId" useGeneratedKeys="true">
+        insert into professional(professional_content)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.professionalContent})
+        </foreach>
+        on duplicate key update
+        professional_content = values(professional_content)    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update professional
+        <set>
+            <if test="professionalContent != null and professionalContent != ''">
+                professional_content = #{professionalContent},
+            </if>
+        </set>
+        where professional_id = #{professionalId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from professional where professional_id = #{professionalId}
+    </delete>
+
+</mapper>
+

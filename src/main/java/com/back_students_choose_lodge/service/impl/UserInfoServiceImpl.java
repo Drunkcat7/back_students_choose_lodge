@@ -67,5 +67,25 @@ public class UserInfoServiceImpl implements UserInfoService {
         return i != 0 && t != 0;
     }
 
+    /**
+     * 查询用户自己的信息
+     * @param uid
+     * @return
+     */
+    @Override
+    public UserInfo queryUserInfoByUid(Integer uid) {
+        return this.userInfoDao.queryById(uid);
+    }
+
+    /**
+     * 确认信息
+     * @param userInfoId
+     * @return
+     */
+    @Override
+    public int confirmUserInfo(Integer userInfoId) {
+        return this.userInfoDao.confirmUserInfo(userInfoId);
+    }
+
 
 }

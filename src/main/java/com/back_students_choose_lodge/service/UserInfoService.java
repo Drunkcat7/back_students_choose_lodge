@@ -37,4 +37,13 @@ public interface UserInfoService {
      * @return
      */
     Boolean addUser(UserInfo userInfo, Account account);
+
+    /**
+     * 查询用户自己的信息
+     * @param uid
+     * @return
+     */
+    UserInfo queryUserInfoByUid(Integer uid);
+
+    int confirmUserInfo(Integer userInfoId);
 }

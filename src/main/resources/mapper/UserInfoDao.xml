@@ -69,10 +69,10 @@
     <insert id="insert" keyProperty="userInfoId" useGeneratedKeys="true">
         insert into user_info(uid, student_id, name, professional, sex, tel, id_card,
                               is_confirm_user_info, is_update_tag)
-        values (#{uid}, #{studentId}, #{name}, #{professional}, #{sex}, #{tel}, #{idCard},#{isConfirmUserInfo}, #{isUpdateTag})
+        values (#{uid}, #{studentId}, #{name}, #{professional}, #{sex}, #{tel}, #{idCard}, #{isConfirmUserInfo},
+                #{isUpdateTag})
     </insert>
 
-    <!--===========================================分界线===========================================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserInfoMap">
         select user_info_id,
@@ -87,8 +87,14 @@
                is_confirm_user_info,
                is_update_tag
         from user_info
-        where user_info_id = #{userInfoId}
+        where uid = #{uid}
     </select>
+    <!--确认信息-->
+    <update id="confirmUserInfo">
+        update user_info set  is_confirm_user_info = 1
+        where user_info_id = #{userInfoId}
+    </update>
+    <!--===========================================分界线===========================================-->
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserInfoMap">

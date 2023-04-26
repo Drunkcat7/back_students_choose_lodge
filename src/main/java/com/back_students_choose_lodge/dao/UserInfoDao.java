@@ -28,6 +28,7 @@ public interface UserInfoDao {
      * @return 影响行数
      */
     int update(UserInfo userInfo);
+
     /**
      * 新增数据
      *
@@ -35,15 +36,19 @@ public interface UserInfoDao {
      * @return 影响行数
      */
     int insert(UserInfo userInfo);
-    /*=============================================================分界线=============================================================*/
 
     /**
      * 通过ID查询单条数据
      *
-     * @param userInfoId 主键
+     * @param uid 用户id
      * @return 实例对象
      */
-    UserInfo queryById(Integer userInfoId);
+    UserInfo queryById(Integer uid);
+
+
+    int confirmUserInfo(Integer userInfoId);
+    /*=============================================================分界线=============================================================*/
+
 
     /**
      * 查询指定行数据
@@ -71,8 +76,6 @@ public interface UserInfoDao {
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
     int insertOrUpdateBatch(@Param("entities") List<UserInfo> entities);
-
-
 
 
     /**

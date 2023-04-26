@@ -2,6 +2,8 @@ package com.back_students_choose_lodge.controller;
 
 import com.back_students_choose_lodge.entity.Account;
 import com.back_students_choose_lodge.entity.UserInfo;
+import com.back_students_choose_lodge.my_interceptor.CurrentUser;
+import com.back_students_choose_lodge.my_interceptor.CurrentUserInfo;
 import com.back_students_choose_lodge.my_interceptor.Role;
 import com.back_students_choose_lodge.service.UserInfoService;
 import org.apache.catalina.User;
@@ -28,6 +30,18 @@ public class UserInfoController {
     @Resource
     private UserInfoService userInfoService;
 
+
+    /**
+     * 查询用户自己的信息
+     *
+     * @return
+     */
+    @GetMapping("/myUserInfo")
+    @Role(roles = {"user"})
+    public UserInfo queryUserInfoByUid(@CurrentUser CurrentUserInfo user) {
+        return this.userInfoService.queryUserInfoByUid(user.getUid());
+    }
+
     /**
      * 查询所有用户信息
      *
@@ -52,10 +66,24 @@ public class UserInfoController {
         return this.userInfoService.updateUser(userInfo, account);
     }
 
+    /**
+     * 新增学生信息
+     *
+     * @param userInfo
+     * @param account
+     * @return
+     */
     @PostMapping("/addUser")
     @Role(roles = {"admin"})
     public Boolean addUser(UserInfo userInfo, Account account) {
         return this.userInfoService.addUser(userInfo, account);
+    }
+
+    @GetMapping("/confirmUserInfo")
+    @Role(roles = {"user"})
+    public Boolean confirmUserInfo(Integer userInfoId) {
+        int i = this.userInfoService.confirmUserInfo(userInfoId);
+        return i != 0;
     }
 }
 
