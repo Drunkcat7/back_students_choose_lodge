@@ -44,6 +44,13 @@ public interface RoomDao {
      */
     List<String> queryUserCommonTag(Integer roomId);
 
+    /**
+     * 获取与性别 专业 相关的房间
+     * @param sex
+     * @param professional
+     * @return
+     */
+    List<Room> queryByProfessionalAndSex(@Param("sex") String sex, @Param("professional") String professional);
 
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 

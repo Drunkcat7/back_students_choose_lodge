@@ -1,9 +1,9 @@
 package com.back_students_choose_lodge.service.impl;
 
 import com.back_students_choose_lodge.dao.*;
-import com.back_students_choose_lodge.entity.Building;
 import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.entity.UserInfo;
+import com.back_students_choose_lodge.entity.UserSelectedRoom;
 import com.back_students_choose_lodge.service.RoomService;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +93,36 @@ public class RoomServiceImpl implements RoomService {
         }
 
         return list;
+    }
+
+    /**
+     * 获取我的所有房间
+     * @param uid 用户id
+     * @return 对象列表
+     */
+    @Override
+    public List<Map<String,Object>> queryMyAllRoom(Integer uid) {
+//        1.获取到用户的 性别 与 专业
+        UserInfo userInfo =  this.userInfoDao.queryById(uid);
+        System.out.println(userInfo.getSex());
+        System.out.println(userInfo.getProfessional());
+//      2. 获取对应的room表数据
+        List<Room> roomList= this.roomDao.queryByProfessionalAndSex(userInfo.getSex(),userInfo.getProfessional());
+//        3.遍历与选择表相结合
+        List<Map<String,Object>> resultList = new ArrayList<Map<String,Object>>();
+        for (Room roomItem:roomList){
+            Map<String, Object> map = new HashMap<>();
+            // 查询此房间有没有被选
+            UserSelectedRoom userSelectedRoom = new UserSelectedRoom();
+            userSelectedRoom.setRoomId(roomItem.getRoomId());
+            List<UserSelectedRoom> userSelectedRoomList = this.userSelectedRoomDao.queryAll(userSelectedRoom);
+            // 存入map中
+            map.put("room",roomItem);
+            map.put("userSelectedRoom",userSelectedRoomList);
+            resultList.add(map);
+        }
+
+        return resultList;
     }
 
     /**～～～～～～～～～～～～～～～～～～～～～～·*/

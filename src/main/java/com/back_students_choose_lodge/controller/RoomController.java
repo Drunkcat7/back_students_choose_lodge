@@ -1,13 +1,15 @@
 package com.back_students_choose_lodge.controller;
 
 import com.back_students_choose_lodge.entity.Room;
+import com.back_students_choose_lodge.entity.UserInfo;
+import com.back_students_choose_lodge.my_interceptor.CurrentUser;
+import com.back_students_choose_lodge.my_interceptor.CurrentUserInfo;
 import com.back_students_choose_lodge.my_interceptor.Role;
 import com.back_students_choose_lodge.service.RoomService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * (Room)表控制层
@@ -76,6 +78,17 @@ public class RoomController {
     public List<Map<String, Object>> roomInfo(Integer roomId) {
         return this.roomService.roomInfo(roomId);
     }
+    /**
+     * 查询用户可选择的房间
+     * @return
+     */
+    @GetMapping("/queryMyAllRoom")
+    @Role(roles = {"user"})
+    public List<Map<String,Object>> queryMyAllRoom(@CurrentUser CurrentUserInfo user) {
+        return this.roomService.queryMyAllRoom(user.getUid());
+    }
+
+
     /** ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～· */
 
     /**

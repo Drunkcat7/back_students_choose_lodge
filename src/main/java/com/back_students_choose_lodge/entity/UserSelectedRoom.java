@@ -6,42 +6,38 @@ import java.io.Serializable;
  * (UserSelectedRoom)实体类
  *
  * @author makejava
- * @since 2023-04-26 23:22:33
+ * @since 2023-04-27 02:39:42
  */
 public class UserSelectedRoom implements Serializable {
-    private static final long serialVersionUID = 499956860364420077L;
+    private static final long serialVersionUID = 231824047040657000L;
     /**
      * 用户选宿id
      */
-    private Integer userSelectedRoom;
-    /**
-     * 楼id
-     */
-    private Integer buildingId;
+    private Integer userSelectedRoomId;
     /**
      * 用户id
      */
     private Integer uid;
     /**
+     * 楼id
+     */
+    private Integer buildingId;
+    /**
      * 房间id
      */
     private Integer roomId;
+    /**
+     * 床号1,2,3,4
+     */
+    private Integer bedNumber;
 
 
-    public Integer getUserSelectedRoom() {
-        return userSelectedRoom;
+    public Integer getUserSelectedRoomId() {
+        return userSelectedRoomId;
     }
 
-    public void setUserSelectedRoom(Integer userSelectedRoom) {
-        this.userSelectedRoom = userSelectedRoom;
-    }
-
-    public Integer getBuildingId() {
-        return buildingId;
-    }
-
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
+    public void setUserSelectedRoomId(Integer userSelectedRoomId) {
+        this.userSelectedRoomId = userSelectedRoomId;
     }
 
     public Integer getUid() {
@@ -52,6 +48,14 @@ public class UserSelectedRoom implements Serializable {
         this.uid = uid;
     }
 
+    public Integer getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Integer buildingId) {
+        this.buildingId = buildingId;
+    }
+
     public Integer getRoomId() {
         return roomId;
     }
@@ -60,5 +64,12 @@ public class UserSelectedRoom implements Serializable {
         this.roomId = roomId;
     }
 
-}
+    public Integer getBedNumber() {
+        return bedNumber;
+    }
 
+    public void setBedNumber(Integer bedNumber) {
+        this.bedNumber = bedNumber;
+    }
+
+}

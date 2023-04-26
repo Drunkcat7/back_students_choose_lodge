@@ -19,6 +19,15 @@ public interface UserSelectedRoomDao {
      * @return
      */
     List<Integer> queryByRoomId(Integer roomId);
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param userSelectedRoom 实例对象
+     * @return 对象列表
+     */
+    List<UserSelectedRoom> queryAll(UserSelectedRoom userSelectedRoom);
+
+
     /*======================分界线======================*/
     /**
      * 通过ID查询单条数据

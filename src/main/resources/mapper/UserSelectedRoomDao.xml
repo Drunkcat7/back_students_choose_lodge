@@ -11,15 +11,38 @@
     <!--获取已选房间中的uid-->
     <select id="queryByRoomId" resultType="java.lang.Integer">
         select
-           uid
+            uid
         from user_selected_room
         where room_id = #{roomId}
+    </select>
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UserSelectedRoomMap">
+        select
+        user_selected_room_id, uid, building_id, room_id, bed_number
+        from students_choose_lodge_database.user_selected_room
+        <where>
+            <if test="userSelectedRoomId != null">
+                and user_selected_room_id = #{userSelectedRoomId}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+            <if test="roomId != null">
+                and room_id = #{roomId}
+            </if>
+            <if test="bedNumber != null">
+                and bed_number = #{bedNumber}
+            </if>
+        </where>
     </select>
     <!--=====================分界线=======================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserSelectedRoomMap">
         select
-          user_selected_room, building_id, uid, room_id
+            user_selected_room, building_id, uid, room_id
         from user_selected_room
         where user_selected_room = #{userSelectedRoom}
     </select>
@@ -27,7 +50,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserSelectedRoomMap">
         select
-          user_selected_room, building_id, uid, room_id
+        user_selected_room, building_id, uid, room_id
         from user_selected_room
         <where>
             <if test="userSelectedRoom != null">

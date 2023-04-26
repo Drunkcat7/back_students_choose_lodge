@@ -44,6 +44,14 @@ public interface RoomService {
      * @return
      */
     List<Map<String, Object>> roomInfo(Integer roomId);
+    /**
+     * 获取我的所有房间
+     * @param uid 用户id
+     * @return 对象列表
+     */
+    List<Map<String,Object>> queryMyAllRoom(Integer uid);
+
+
     /** ～～～～～～～～～～～～～～～～～～～～～～～· */
 
     /**
