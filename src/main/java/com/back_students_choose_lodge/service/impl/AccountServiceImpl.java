@@ -54,4 +54,26 @@ public class AccountServiceImpl implements AccountService {
         return map;
     }
 
+    /**
+     * 通过主键删除数据
+     *
+     * @param uid 主键
+     * @return Boole
+     */
+    @Override
+    public Boolean deleteById(Integer uid) {
+        return this.accountDao.deleteById(uid) != 0;
+    }
+
+    /**
+     * 通过主键查询用户单条信息
+     *
+     * @param uid 主键
+     * @return 影响行数
+     */
+    @Override
+    public Account getUserById(Integer uid) {
+        return this.accountDao.getUserById(uid);
+    }
+
 }
