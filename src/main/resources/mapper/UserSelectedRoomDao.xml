@@ -3,10 +3,11 @@
 <mapper namespace="com.back_students_choose_lodge.dao.UserSelectedRoomDao">
 
     <resultMap type="com.back_students_choose_lodge.entity.UserSelectedRoom" id="UserSelectedRoomMap">
-        <result property="userSelectedRoom" column="user_selected_room" jdbcType="INTEGER"/>
+        <result property="userSelectedRoomId" column="user_selected_room_id" jdbcType="INTEGER"/>
         <result property="buildingId" column="building_id" jdbcType="INTEGER"/>
         <result property="uid" column="uid" jdbcType="INTEGER"/>
         <result property="roomId" column="room_id" jdbcType="INTEGER"/>
+        <result property="bedNumber" column="bed_number" jdbcType="INTEGER"/>
     </resultMap>
     <!--获取已选房间中的uid-->
     <select id="queryByRoomId" resultType="java.lang.Integer">

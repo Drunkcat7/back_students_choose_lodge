@@ -48,6 +48,11 @@ public class UserSelectedTagController {
         return ResponseEntity.ok(this.userSelectedTagService.updateTag(tagIds, user.getUid()));
     }
 
+    /**
+     * 更改选择标签
+     * @param userInfo
+     * @return
+     */
     @GetMapping("/isUpdateSelectedTags")
     @Role(roles = {"user"})
     public Boolean isUpdateSelectedTags(@CurrentUser CurrentUserInfo userInfo) {
