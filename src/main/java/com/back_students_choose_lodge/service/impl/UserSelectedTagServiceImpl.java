@@ -83,4 +83,14 @@ public class UserSelectedTagServiceImpl implements UserSelectedTagService {
         return num;
     }
 
+    /**
+     * 获取用户的所有标签
+     * @param uid
+     * @return
+     */
+    @Override
+    public List<String> queryTag(Integer uid) {
+        return this.userSelectedTagDao.queryTag(uid);
+    }
+
 }

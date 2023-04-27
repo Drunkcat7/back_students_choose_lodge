@@ -4,6 +4,8 @@ import com.back_students_choose_lodge.entity.UserSelectedTag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * (UserSelectedTag)表服务接口
  *
@@ -33,4 +35,11 @@ public interface UserSelectedTagService {
      * @return
      */
     int updateTag(Integer[] tagIds, Integer uid);
+
+    /**
+     * 获取用户的所有标签
+     * @param uid
+     * @return
+     */
+    List<String> queryTag(Integer uid);
 }
