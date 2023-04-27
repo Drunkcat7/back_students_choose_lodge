@@ -18,7 +18,7 @@ import java.util.Map;
  * @since 2023-04-27 02:39:43
  */
 @RestController
-    @RequestMapping("userSelectedRoom")
+@RequestMapping("userSelectedRoom")
 public class UserSelectedRoomController {
     /**
      * 服务对象
@@ -47,6 +47,17 @@ public class UserSelectedRoomController {
     @Role(roles = {"user"})
     public Map<String, Object> myRoom(@CurrentUser CurrentUserInfo user) {
         return this.userSelectedRoomService.myRoom(user.getUid());
+    }
+
+    /**
+     * 删除用户宿舍选择
+     * @param uid
+     * @return
+     */
+    @GetMapping("/deselectUserRoom")
+    @Role(roles = {"admin"})
+    public Boolean deselectUserRoom(Integer uid) {
+        return this.userSelectedRoomService.deselectUserRoom(uid);
     }
     /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /**

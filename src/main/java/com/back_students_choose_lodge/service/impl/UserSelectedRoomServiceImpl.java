@@ -29,6 +29,7 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
     private RoomDao roomDao;
     @Resource
     private UserInfoDao userInfoDao;
+
     /**
      * 通过ID查询单条数据
      *
@@ -100,6 +101,7 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
 
     /**
      * 我的房间
+     *
      * @param uid
      * @return
      */
@@ -113,5 +115,18 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
         map.put("roomId", room.getRoomId());
         map.put("roomName", room.getRoomName());
         return map;
+    }
+
+    /**
+     * 删除用户宿舍选择
+     *
+     * @param uid
+     * @return
+     */
+    @Override
+    public Boolean deselectUserRoom(Integer uid) {
+        int i = this.userInfoDao.updateIsSelectedRoom(uid, 0);
+        this.userSelectedRoomDao.deleteByUid(uid);
+        return i != 0;
     }
 }

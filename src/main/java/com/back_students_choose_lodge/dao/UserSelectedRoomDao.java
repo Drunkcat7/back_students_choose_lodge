@@ -36,6 +36,14 @@ public interface UserSelectedRoomDao {
      * 查询该房间的所有uid
      */
     List<UserSelectedRoom> queryAllUid(Integer roomId);
+
+    /**
+     * 通过用户删除数据
+     *
+     * @param uid 用户id
+     * @return 影响行数
+     */
+    int deleteByUid(Integer uid);
     /*======================分界线======================*/
     /**
      * 通过ID查询单条数据
