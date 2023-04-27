@@ -58,10 +58,19 @@ public interface UserInfoDao {
 
     /**
      * 已经确认标签
+     *
      * @param uid
      * @return
      */
     int confirmIsUpdateTag(@Param("uid") Integer uid);
+
+    /**
+     * 宿舍是否可以选择
+     *
+     * @param uid
+     * @return
+     */
+    int updateIsSelectedRoom(@Param("uid") Integer uid, @Param("isSelectedRoom") Integer isSelectedRoom);
     /*=============================================================分界线=============================================================*/
 
 

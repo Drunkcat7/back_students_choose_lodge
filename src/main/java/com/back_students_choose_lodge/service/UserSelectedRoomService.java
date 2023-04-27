@@ -57,4 +57,12 @@ public interface UserSelectedRoomService {
      */
     Map<String, Object> myRoom(Integer uid);
 
+    /**
+     * 删除用户宿舍选择
+     *
+     * @param uid
+     * @return
+     */
+    Boolean deselectUserRoom(Integer uid);
+
 }

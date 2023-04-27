@@ -43,12 +43,16 @@
     <select id="queryAllRoomId" resultType="java.lang.Integer">
         SELECT distinct room_id  FROM user_selected_room
     </select>
-    <!---->
+    <!--查询全部uid和床号-->
     <select id="queryAllUid" resultMap="UserSelectedRoomMap">
         SELECT uid, bed_number
         FROM user_selected_room
         where room_id = #{roomId}
     </select>
+    <!--通过uid删除-->
+    <delete id="deleteByUid">
+        delete from user_selected_room where uid = #{uid}
+    </delete>
     <!--=====================分界线=======================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserSelectedRoomMap">
