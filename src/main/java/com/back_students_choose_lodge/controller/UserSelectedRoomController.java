@@ -1,10 +1,15 @@
 package com.back_students_choose_lodge.controller;
 
 import com.back_students_choose_lodge.entity.UserSelectedRoom;
+import com.back_students_choose_lodge.my_interceptor.CurrentUser;
+import com.back_students_choose_lodge.my_interceptor.CurrentUserInfo;
+import com.back_students_choose_lodge.my_interceptor.Role;
 import com.back_students_choose_lodge.service.UserSelectedRoomService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * (UserSelectedRoom)表控制层
@@ -13,7 +18,7 @@ import javax.annotation.Resource;
  * @since 2023-04-27 02:39:43
  */
 @RestController
-@RequestMapping("userSelectedRoom")
+    @RequestMapping("userSelectedRoom")
 public class UserSelectedRoomController {
     /**
      * 服务对象
@@ -21,6 +26,29 @@ public class UserSelectedRoomController {
     @Resource
     private UserSelectedRoomService userSelectedRoomService;
 
+
+    /**
+     * 获取房间管理信息
+     *
+     * @return Map
+     */
+    @GetMapping("/roomManagementInfo")
+    @Role(roles = {"admin"})
+    public List<Map<String, Object>> roomManagementInfo() {
+        return this.userSelectedRoomService.roomManagementInfo();
+    }
+
+    /**
+     * 我的房间
+     * @param user
+     * @return
+    w */
+    @GetMapping("/myRoom")
+    @Role(roles = {"user"})
+    public Map<String, Object> myRoom(@CurrentUser CurrentUserInfo user) {
+        return this.userSelectedRoomService.myRoom(user.getUid());
+    }
+    /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /**
      * 通过主键查询单条数据
      *

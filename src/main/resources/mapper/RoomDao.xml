@@ -81,7 +81,9 @@
             sex = #{sex} and
             professional = #{professional}
     </select>
-
+    <select id="myRoom" resultMap="RoomMap">
+        SELECT room.* FROM user_selected_room,room WHERE uid = #{uid} and user_selected_room.room_id = room.room_id
+    </select>
 <!--    分界线～～～～～～～～～～～～～～～～～～～～～·-->
 
     <!--新增所有列-->

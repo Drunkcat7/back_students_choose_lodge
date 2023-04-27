@@ -27,6 +27,10 @@ public interface UserSelectedRoomDao {
      */
     List<UserSelectedRoom> queryAll(UserSelectedRoom userSelectedRoom);
 
+    /**
+     * 获取全部已选择的id
+     */
+    List<Integer> queryAllRoomId();
 
     /*======================分界线======================*/
     /**

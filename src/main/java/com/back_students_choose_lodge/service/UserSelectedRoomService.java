@@ -3,6 +3,7 @@ package com.back_students_choose_lodge.service;
 import com.back_students_choose_lodge.entity.UserSelectedRoom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (UserSelectedRoom)表服务接口
@@ -43,5 +44,17 @@ public interface UserSelectedRoomService {
      * @return 是否成功
      */
     boolean deleteById(Integer userSelectedRoomId);
+
+    /**
+     * 获取房间管理信息
+     *
+     * @return Map
+     */
+    List<Map<String, Object>> roomManagementInfo();
+
+    /**
+     * 我的房间
+     */
+    Map<String, Object> myRoom(Integer uid);
 
 }

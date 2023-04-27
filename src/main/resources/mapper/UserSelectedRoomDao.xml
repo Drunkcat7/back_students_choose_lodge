@@ -39,6 +39,10 @@
             </if>
         </where>
     </select>
+    <!--获取全部已选择的id-->
+    <select id="queryAllRoomId" resultType="java.lang.Integer">
+        SELECT distinct room_id  FROM user_selected_room
+    </select>
     <!--=====================分界线=======================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserSelectedRoomMap">

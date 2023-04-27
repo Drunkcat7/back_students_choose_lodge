@@ -75,24 +75,5 @@ public class AccountController {
     public Account getUserById(Integer uid) {
         return this.accountService.getUserById(uid);
     }
-
-
-
-    @GetMapping("/userInfo")
-    @Role(roles = {"user"})//普通用户
-    public Map<String, Object> userInfo(@CurrentUser CurrentUserInfo currentUser) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", currentUser);
-        return map;
-    }
-
-    @GetMapping("/admin")
-    @Role(roles = {"admin"})//管理员
-    public Map<String, Object> userAdmin(@CurrentUser CurrentUserInfo currentUser) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", currentUser);
-        map.put("msg", "ADMIN");
-        return map;
-    }
 }
 

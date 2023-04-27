@@ -1,11 +1,17 @@
 package com.back_students_choose_lodge.service.impl;
 
+import com.back_students_choose_lodge.dao.RoomDao;
 import com.back_students_choose_lodge.dao.UserSelectedRoomDao;
+import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.entity.UserSelectedRoom;
 import com.back_students_choose_lodge.service.UserSelectedRoomService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * (UserSelectedRoom)表服务实现类
@@ -18,6 +24,8 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
     @Resource
     private UserSelectedRoomDao userSelectedRoomDao;
 
+    @Resource
+    private RoomDao roomDao;
     /**
      * 通过ID查询单条数据
      *
@@ -62,5 +70,32 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
     @Override
     public boolean deleteById(Integer userSelectedRoomId) {
         return this.userSelectedRoomDao.deleteById(userSelectedRoomId) > 0;
+    }
+
+    /**
+     * 获取房间管理信息
+     *
+     * @return Map
+     */
+    @Override
+    public List<Map<String, Object>> roomManagementInfo() {
+        List<Map<String, Object>> list = new ArrayList<>();
+        List<Integer> roomIds = this.userSelectedRoomDao.queryAllRoomId();
+        for (Integer roomId : roomIds) {
+            Map<String, Object> map = new HashMap<>();
+        }
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> myRoom(Integer uid) {
+        Room room = this.roomDao.myRoom(uid);
+        if (room == null) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("roomId", room.getRoomId());
+        map.put("roomName", room.getRoomName());
+        return map;
     }
 }
