@@ -89,6 +89,7 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
             List<UserSelectedRoom> userRoomList = this.userSelectedRoomDao.queryAllUid(roomId);
             for (UserSelectedRoom userSelectedRoom : userRoomList) {
                 map.put("roomId", roomId);
+                map.put("title", this.roomDao.roomTitle(roomId));
                 map.put("bedNumber" + userSelectedRoom.getBedNumber(),
                         this.userInfoDao.queryById(userSelectedRoom.getUid()));
             }

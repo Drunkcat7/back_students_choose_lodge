@@ -60,6 +60,11 @@ public interface RoomDao {
      */
     Room myRoom(Integer uid);
 
+    /**
+     * 获取房间名字
+     */
+    String roomTitle(Integer roomId);
+
     /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     /**

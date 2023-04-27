@@ -81,8 +81,15 @@
             sex = #{sex} and
             professional = #{professional}
     </select>
+    <!--我的房间-->
     <select id="myRoom" resultMap="RoomMap">
         SELECT room.* FROM user_selected_room,room WHERE uid = #{uid} and user_selected_room.room_id = room.room_id
+    </select>
+    <!--房间标题-->
+    <select id="roomTitle" resultType="java.lang.String">
+        SELECT room_name
+        FROM room
+        where room_id = #{roomId}
     </select>
 <!--    分界线～～～～～～～～～～～～～～～～～～～～～·-->
 
