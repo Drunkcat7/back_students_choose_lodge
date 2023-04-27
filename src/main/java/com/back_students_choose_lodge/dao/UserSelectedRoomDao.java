@@ -32,6 +32,10 @@ public interface UserSelectedRoomDao {
      */
     List<Integer> queryAllRoomId();
 
+    /**
+     * 查询该房间的所有uid
+     */
+    List<UserSelectedRoom> queryAllUid(Integer roomId);
     /*======================分界线======================*/
     /**
      * 通过ID查询单条数据
