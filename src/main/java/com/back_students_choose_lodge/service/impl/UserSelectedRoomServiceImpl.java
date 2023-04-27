@@ -4,6 +4,7 @@ import com.back_students_choose_lodge.dao.RoomDao;
 import com.back_students_choose_lodge.dao.UserInfoDao;
 import com.back_students_choose_lodge.dao.UserSelectedRoomDao;
 import com.back_students_choose_lodge.entity.Room;
+import com.back_students_choose_lodge.entity.UserInfo;
 import com.back_students_choose_lodge.entity.UserSelectedRoom;
 import com.back_students_choose_lodge.service.UserSelectedRoomService;
 import org.springframework.stereotype.Service;
@@ -129,5 +130,30 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
         int i = this.userInfoDao.updateIsSelectedRoom(uid, 0);
         this.userSelectedRoomDao.deleteByUid(uid);
         return i != 0;
+    }
+
+    /**
+     * 学生加入宿舍，选床
+     * @param buildingId
+     * @param roomId
+     * @param bedNumber
+     * @param uid
+     * @return
+     */
+    @Override
+    public Boolean insertUserRoom(Integer buildingId, Integer roomId, Integer bedNumber, Integer uid) {
+        UserInfo userInfo = this.userInfoDao.queryById(uid);
+        if (userInfo.getIsSelectedRoom() == 1){
+            return false;
+        }
+        UserSelectedRoom userSelectedRoom = new UserSelectedRoom();
+        userSelectedRoom.setBuildingId(buildingId);
+        userSelectedRoom.setRoomId(roomId);
+        userSelectedRoom.setBedNumber(bedNumber);
+        userSelectedRoom.setUid(uid);
+        this.userSelectedRoomDao.insert(userSelectedRoom);
+
+        this.userInfoDao.updateIsSelectedRoom(uid, 1);
+        return true;
     }
 }

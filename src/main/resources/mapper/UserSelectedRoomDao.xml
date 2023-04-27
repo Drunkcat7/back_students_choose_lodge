@@ -53,6 +53,12 @@
     <delete id="deleteByUid">
         delete from user_selected_room where uid = #{uid}
     </delete>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="userSelectedRoom" useGeneratedKeys="true">
+        insert into user_selected_room(building_id, uid, room_id, bed_number)
+        values (#{buildingId}, #{uid}, #{roomId},#{bedNumber})
+    </insert>
     <!--=====================分界线=======================-->
     <!--查询单个-->
     <select id="queryById" resultMap="UserSelectedRoomMap">
@@ -104,11 +110,7 @@
         </where>
     </select>
 
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="userSelectedRoom" useGeneratedKeys="true">
-        insert into user_selected_room(building_id, uid, room_id)
-        values (#{buildingId}, #{uid}, #{roomId})
-    </insert>
+
 
     <insert id="insertOrUpdateBatch" keyProperty="userSelectedRoom" useGeneratedKeys="true">
         insert into user_selected_room(building_id, uid, room_id)

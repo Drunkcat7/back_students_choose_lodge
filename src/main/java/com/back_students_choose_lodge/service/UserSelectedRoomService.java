@@ -65,4 +65,15 @@ public interface UserSelectedRoomService {
      */
     Boolean deselectUserRoom(Integer uid);
 
+
+    /**
+     * 学生加入宿舍，选床
+     * @param buildingId
+     * @param roomId
+     * @param bedNumber
+     * @param uid
+     * @return
+     */
+    Boolean insertUserRoom(Integer buildingId,Integer roomId,Integer bedNumber,Integer uid);
+
 }

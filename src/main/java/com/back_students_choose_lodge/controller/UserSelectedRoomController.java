@@ -59,6 +59,21 @@ public class UserSelectedRoomController {
     public Boolean deselectUserRoom(Integer uid) {
         return this.userSelectedRoomService.deselectUserRoom(uid);
     }
+
+
+    /**
+     * 学生加入宿舍，选床
+     * @param buildingId
+     * @param roomId
+     * @param bedNumber
+     * @param user
+     * @return
+     */
+    @PostMapping("/insertUserRoom")
+    @Role(roles = {"user"})
+    public Boolean insertUserRoom(Integer buildingId,Integer roomId,Integer bedNumber,@CurrentUser CurrentUserInfo user) {
+        return this.userSelectedRoomService.insertUserRoom(buildingId,roomId,bedNumber,user.getUid());
+    }
     /**~~~~~~~~~~~~~~~~~分界线~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /**
      * 通过主键查询单条数据

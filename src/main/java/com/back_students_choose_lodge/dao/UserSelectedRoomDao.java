@@ -44,6 +44,14 @@ public interface UserSelectedRoomDao {
      * @return 影响行数
      */
     int deleteByUid(Integer uid);
+
+    /**
+     * 新增数据
+     *
+     * @param userSelectedRoom 实例对象
+     * @return 影响行数
+     */
+    int insert(UserSelectedRoom userSelectedRoom);
     /*======================分界线======================*/
     /**
      * 通过ID查询单条数据
@@ -70,13 +78,7 @@ public interface UserSelectedRoomDao {
      */
     long count(UserSelectedRoom userSelectedRoom);
 
-    /**
-     * 新增数据
-     *
-     * @param userSelectedRoom 实例对象
-     * @return 影响行数
-     */
-    int insert(UserSelectedRoom userSelectedRoom);
+
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
