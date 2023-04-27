@@ -120,9 +120,11 @@ public class RoomServiceImpl implements RoomService {
             UserSelectedRoom userSelectedRoom = new UserSelectedRoom();
             userSelectedRoom.setRoomId(roomItem.getRoomId());
             List<UserSelectedRoom> userSelectedRoomList = this.userSelectedRoomDao.queryAll(userSelectedRoom);
+            List<String> commonTag = this.roomDao.queryUserCommonTag(roomItem.getRoomId());
             // 存入map中
             map.put("room",roomItem);
             map.put("userSelectedRoom",userSelectedRoomList);
+            map.put("commonTag",commonTag);
             resultList.add(map);
         }
 
