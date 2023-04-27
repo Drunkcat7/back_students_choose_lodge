@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (UserSelectedTag)表控制层
@@ -58,6 +59,17 @@ public class UserSelectedTagController {
     public Boolean isUpdateSelectedTags(@CurrentUser CurrentUserInfo userInfo) {
         long count = this.userSelectedTagService.count(userInfo.getUid());
         return count != 0;
+    }
+
+    /**
+     * 更改选择标签
+     * @param userInfo
+     * @return
+     */
+    @GetMapping("/queryUserTag")
+    @Role(roles = {"user"})
+    public List<String> queryUserTag(@CurrentUser CurrentUserInfo userInfo) {
+        return this.userSelectedTagService.queryTag(userInfo.getUid());
     }
 }
 
