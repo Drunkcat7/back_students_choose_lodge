@@ -1,6 +1,7 @@
 package com.back_students_choose_lodge.service.impl;
 
 import com.back_students_choose_lodge.dao.RoomDao;
+import com.back_students_choose_lodge.dao.UserInfoDao;
 import com.back_students_choose_lodge.dao.UserSelectedRoomDao;
 import com.back_students_choose_lodge.entity.Room;
 import com.back_students_choose_lodge.entity.UserSelectedRoom;
@@ -26,6 +27,8 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
 
     @Resource
     private RoomDao roomDao;
+    @Resource
+    private UserInfoDao userInfoDao;
     /**
      * 通过ID查询单条数据
      *
@@ -83,10 +86,23 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
         List<Integer> roomIds = this.userSelectedRoomDao.queryAllRoomId();
         for (Integer roomId : roomIds) {
             Map<String, Object> map = new HashMap<>();
+            List<UserSelectedRoom> userRoomList = this.userSelectedRoomDao.queryAllUid(roomId);
+            for (UserSelectedRoom userSelectedRoom : userRoomList) {
+                map.put("roomId", roomId);
+                map.put("title", this.roomDao.roomTitle(roomId));
+                map.put("bedNumber" + userSelectedRoom.getBedNumber(),
+                        this.userInfoDao.queryById(userSelectedRoom.getUid()));
+            }
+            list.add(map);
         }
-        return null;
+        return list;
     }
 
+    /**
+     * 我的房间
+     * @param uid
+     * @return
+     */
     @Override
     public Map<String, Object> myRoom(Integer uid) {
         Room room = this.roomDao.myRoom(uid);
