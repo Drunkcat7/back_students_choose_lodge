@@ -96,6 +96,7 @@ public class UserSelectedRoomServiceImpl implements UserSelectedRoomService {
         Map<String, Object> map = new HashMap<>();
         map.put("roomId", room.getRoomId());
         map.put("roomName", room.getRoomName());
+        map.put("buildingId", room.getBuildingId());
         return map;
     }
 }
