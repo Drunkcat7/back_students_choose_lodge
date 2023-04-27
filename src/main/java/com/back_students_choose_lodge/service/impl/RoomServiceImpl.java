@@ -87,6 +87,10 @@ public class RoomServiceImpl implements RoomService {
             Map<String, Object> map = new HashMap<>();
             UserInfo userInfo = userInfoDao.queryById(uid);
             List<String> tags = userSelectedTagDao.queryTag(uid);
+            UserSelectedRoom userSelectedRoom = new UserSelectedRoom();
+            userSelectedRoom.setUid(uid);
+            List<UserSelectedRoom> userSelectedRooms = userSelectedRoomDao.queryAll(userSelectedRoom);
+            map.put("bedNumber", userSelectedRooms.get(0).getBedNumber());
             map.put("userInfo", userInfo);
             map.put("tags", tags);
             list.add(map);
