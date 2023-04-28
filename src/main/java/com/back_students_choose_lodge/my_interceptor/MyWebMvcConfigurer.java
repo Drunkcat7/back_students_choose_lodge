@@ -34,13 +34,4 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public CurrentUserMethodArgumentResolver currentUserMethodArgumentResolver() {
         return new CurrentUserMethodArgumentResolver();
     }
-    //跨域
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        WebMvcConfigurer.super.addCorsMappings(registry);
-        registry.addMapping("/**")
-                .allowedHeaders("*")
-                .allowedMethods("POST", "GET","PUT")
-                .allowedOrigins("*");
-    }
 }
