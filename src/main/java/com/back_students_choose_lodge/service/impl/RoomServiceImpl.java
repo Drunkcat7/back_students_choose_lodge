@@ -108,8 +108,8 @@ public class RoomServiceImpl implements RoomService {
     public List<Map<String,Object>> queryMyAllRoom(Integer uid) {
 //        1.获取到用户的 性别 与 专业
         UserInfo userInfo =  this.userInfoDao.queryById(uid);
-        System.out.println(userInfo.getSex());
-        System.out.println(userInfo.getProfessional());
+//        System.out.println(userInfo.getSex());
+//        System.out.println(userInfo.getProfessional());
 //      2. 获取对应的room表数据
         List<Room> roomList= this.roomDao.queryByProfessionalAndSex(userInfo.getSex(),userInfo.getProfessional());
 //        3.遍历与选择表相结合

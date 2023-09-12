@@ -105,6 +105,11 @@ public class UserInfoController {
         return this.userInfoService.updateIntroduce(user.getUid(), introduce);
     }
 
+    /**
+     * 检查用户是否确认过标签
+     * @param user token解析的用户信息
+     * @return boolean
+     */
     @GetMapping("/checkUserTag")
     @Role(roles = {"user"})
     public Boolean checkUserTag(@CurrentUser CurrentUserInfo user) {

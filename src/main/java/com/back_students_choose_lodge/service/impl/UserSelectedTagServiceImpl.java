@@ -83,6 +83,12 @@ public class UserSelectedTagServiceImpl implements UserSelectedTagService {
         return num;
     }
 
+    //是否可以修改tag(0可以修改，1不可以修改)
+    @Override
+    public Boolean isUpdateSelectedTags(Integer uid) {
+        return userInfoDao.queryById(uid).getIsUpdateTag() != 1;
+    }
+
     /**
      * 获取用户的所有标签
      * @param uid

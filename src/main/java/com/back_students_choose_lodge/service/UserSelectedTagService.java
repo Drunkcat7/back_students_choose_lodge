@@ -37,6 +37,14 @@ public interface UserSelectedTagService {
     int updateTag(Integer[] tagIds, Integer uid);
 
     /**
+     * 检查是否可以修改标签
+     *
+     * @param uid 查询条件
+     * @return 总行数
+     */
+    Boolean isUpdateSelectedTags(Integer uid);
+
+    /**
      * 获取用户的所有标签
      * @param uid
      * @return

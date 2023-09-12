@@ -50,19 +50,18 @@ public class UserSelectedTagController {
     }
 
     /**
-     * 更改选择标签
+     * 检查用户是否可以修改标签
      * @param userInfo
      * @return
      */
     @GetMapping("/isUpdateSelectedTags")
     @Role(roles = {"user"})
     public Boolean isUpdateSelectedTags(@CurrentUser CurrentUserInfo userInfo) {
-        long count = this.userSelectedTagService.count(userInfo.getUid());
-        return count != 0;
+        return this.userSelectedTagService.isUpdateSelectedTags(userInfo.getUid());
     }
 
     /**
-     * 更改选择标签
+     * 查询用户选择标签
      * @param userInfo
      * @return
      */
