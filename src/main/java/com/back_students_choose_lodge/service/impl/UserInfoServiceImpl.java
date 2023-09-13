@@ -11,7 +11,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (UserInfo)表服务实现类
@@ -64,14 +66,17 @@ public class UserInfoServiceImpl implements UserInfoService {
      * @return
      */
     @Override
-    public Boolean addUser(UserInfo userInfo, Account account) {
+    public Map<String, Object> addUser(UserInfo userInfo, Account account) {
         int t = this.accountDao.insert(account);
+        Map<String, Object> map = new HashMap<>();
         if (t != 0) {
             Account newUser = this.accountDao.getNewUser();
             userInfo.setUid(newUser.getUid());
+            map.put("uid", newUser.getUid());
         }
         int i = this.userInfoDao.insert(userInfo);
-        return i != 0 && t != 0;
+        map.put("status", i != 0 && t != 0);
+        return map;
     }
 
     /**

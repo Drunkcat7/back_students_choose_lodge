@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (UserInfo)表服务接口
@@ -38,7 +39,7 @@ public interface UserInfoService {
      * @param account
      * @return
      */
-    Boolean addUser(UserInfo userInfo, Account account);
+    Map<String,Object> addUser(UserInfo userInfo, Account account);
 
     /**
      * 查询用户自己的信息

@@ -29,7 +29,7 @@ public class RoomController {
 
 
     /**
-     * 通过实体作为筛选条件查询
+     * 查询某栋楼的所有宿舍房间
      *
      * @param buildingId 宿舍楼号
      * @return 对象列表
@@ -42,7 +42,7 @@ public class RoomController {
 
 
     /**
-     * 修改房间专业
+     * 修改房间所属的专业
      * @param professional
      * @param roomId 房间id列表
      * @return 影响行数

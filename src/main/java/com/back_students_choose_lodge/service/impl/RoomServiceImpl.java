@@ -46,7 +46,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     /**
-     * 修改房间专业
+     * 修改房间所属的专业
      * @param professional
      * @param roomId 房间id列表
      * @return 影响行数

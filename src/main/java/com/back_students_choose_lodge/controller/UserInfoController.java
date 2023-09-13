@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (UserInfo)表控制层
@@ -75,7 +76,7 @@ public class UserInfoController {
      */
     @PostMapping("/addUser")
     @Role(roles = {"admin"})
-    public Boolean addUser(UserInfo userInfo, Account account) {
+    public Map<String, Object> addUser(UserInfo userInfo, Account account) {
         return this.userInfoService.addUser(userInfo, account);
     }
 
