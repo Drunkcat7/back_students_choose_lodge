@@ -44,9 +44,16 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public Boolean updateUser(UserInfo userInfo, Account account) {
+
+        if (account.getLevel() == null || account.getLevel() != 1) {
+            account.setLevel(0);
+        }
         int i = this.userInfoDao.update(userInfo);
-        int t = this.accountDao.update(account);
-        return i != 0 && t != 0;
+        int t = 0;
+        if (!(account.getUser() == null && account.getPassword() == null)) {
+            t = this.accountDao.update(account);
+        }
+        return i != 0 || t != 0;
     }
 
     /**
@@ -91,6 +98,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     /**
      * 修改个签
+     *
      * @param uid
      * @param introduce
      * @return

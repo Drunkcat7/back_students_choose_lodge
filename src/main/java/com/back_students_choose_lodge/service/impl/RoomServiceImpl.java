@@ -95,7 +95,6 @@ public class RoomServiceImpl implements RoomService {
             map.put("tags", tags);
             list.add(map);
         }
-
         return list;
     }
 
@@ -106,13 +105,13 @@ public class RoomServiceImpl implements RoomService {
      */
     @Override
     public List<Map<String,Object>> queryMyAllRoom(Integer uid) {
-//        1.获取到用户的 性别 与 专业
+        //1.获取到用户的 性别 与 专业
         UserInfo userInfo =  this.userInfoDao.queryById(uid);
-//        System.out.println(userInfo.getSex());
-//        System.out.println(userInfo.getProfessional());
-//      2. 获取对应的room表数据
+        //System.out.println(userInfo.getSex());
+        //System.out.println(userInfo.getProfessional());
+        //2. 获取对应的room表数据
         List<Room> roomList= this.roomDao.queryByProfessionalAndSex(userInfo.getSex(),userInfo.getProfessional());
-//        3.遍历与选择表相结合
+        //3.遍历与选择表相结合
         List<Map<String,Object>> resultList = new ArrayList<Map<String,Object>>();
         for (Room roomItem:roomList){
             Map<String, Object> map = new HashMap<>();
@@ -127,7 +126,6 @@ public class RoomServiceImpl implements RoomService {
             map.put("commonTag",commonTag);
             resultList.add(map);
         }
-
         return resultList;
     }
 

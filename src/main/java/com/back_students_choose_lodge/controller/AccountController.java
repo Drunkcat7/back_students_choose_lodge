@@ -55,7 +55,7 @@ public class AccountController {
     }
 
     /**
-     * 删除用户信息
+     * 删除学生信息
      *
      * @return
      */
